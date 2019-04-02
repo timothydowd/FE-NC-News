@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Router, Link } from '@reach/router'
+import { Link } from '@reach/router'
 import Axios from 'axios';
 
 
@@ -37,11 +37,10 @@ class Articles extends Component {
     })
   }
 
-  openArticle = (e) => {
-    //console.log(e.target)
-    }
+  
 
-    displayArticles() {
+    displayArticles = () => {
+
         return (
             <div>
                 {

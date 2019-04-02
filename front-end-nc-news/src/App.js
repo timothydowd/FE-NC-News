@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Router, Link } from '@reach/router'
-import axios from 'axios';
+import { Router } from '@reach/router'
+
 import Articles from './components/Articles'
 import SingleArticle from './components/SingleArticle'
 
