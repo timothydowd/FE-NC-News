@@ -9,6 +9,7 @@ import Axios from 'axios';
 class Articles extends Component {
 
   state = { articles: [] }
+  
   render() {
       return(
           <div>
@@ -22,17 +23,23 @@ class Articles extends Component {
     this.getArticles();
   }
 
+  componentDidUpdate() {
+    
+  }
+
   getArticles = () => {
     Axios.get(
       'https://ncnewstimdowd.herokuapp.com/api/articles'
     )
     .then(articleData => {
       this.setState({ articles: articleData.data.articles })
-      console.log(this.state.articles)
+      //console.log(this.state.articles)
     })
   }
 
-  
+  openArticle = (e) => {
+    //console.log(e.target)
+    }
 
     displayArticles() {
         return (
@@ -40,15 +47,17 @@ class Articles extends Component {
                 {
                     this.state.articles.map(article => {
                         return (
-                            <div key={article.article_id} className='articleBorder' onClick={openArticle()}>
-                                <p> Title: {article.title} </p>
-                                <p> Author: {article.author} </p>
-                                <p> Body: {article.body} </p>
-                                <p> Comment Count: {article.comment_count} </p>
-                                <p> Created: {article.created_at} </p>
-                                <p> Topic: {article.topic} </p>
-                                <p> Likes: {article.votes} </p>
-                            </div>
+                            <Link to ={`/articles/${article.article_id}`} key={article.article_id}>
+                                <div className='articleContainer' >
+                                    <p> Title: {article.title} </p>
+                                    <p> Author: {article.author} </p>
+                                    <p> Body: {`${article.body.substring(0,100)}......`} </p>
+                                    <p> Comments: {article.comment_count} </p>
+                                    <p> Created: {article.created_at} </p>
+                                    <p> Topic: {article.topic} </p>
+                                    <p> Likes: {article.votes} </p>
+                                </div>
+                            </Link>
                         )
                     })   
                 }
@@ -57,9 +66,7 @@ class Articles extends Component {
     }
 }
 
-const openArticle = (event) => {
-    console.log(event)
-}
+
 
 export default Articles;
 
