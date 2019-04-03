@@ -17,7 +17,9 @@ class Articles extends Component {
 
     this.state = {
       articles: [],
-      sortByQuery: ''
+      sortByQuery: '',
+      topicQuery: '',
+      query: ''
      }
     
     
@@ -26,6 +28,7 @@ class Articles extends Component {
   }
   
   render() {
+    
     return (
         <div>
           <select onChange={this.handleChange}>
@@ -59,26 +62,45 @@ class Articles extends Component {
 
   
 
-   handleChange(e) {
-     e.preventDefault();
-     this.setState({sortByQuery:e.target.value})
-     
-   }
-
-
-  componentDidMount() {
-    Promise.resolve(getArticles())
-        .then(articleData => {
-          this.setState({ 
-            articles: articleData, 
-          })
-        })
+  //  
+  
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({query:e.target.value})
     
   }
 
-  componentDidUpdate(prevState) {
-    if(this.state.sortByQuery !== prevState.sortByQuery){
-      Promise.resolve(getArticlesBySort(this.state.sortByQuery))
+
+  componentDidMount() {
+    
+      Promise.resolve(getArticles(this.props.location.search))
+          .then(articleData => {
+            console.log(articleData)
+            this.setState({ 
+              articles: articleData, 
+            })
+          })
+    //}
+    
+
+    
+  }
+
+  // componentDidUpdate(prevState) {
+  //   if(this.state.sortByQuery !== prevState.sortByQuery){
+  //     Promise.resolve(getArticlesBySort(this.state.sortByQuery))
+  //       .then(articles => {
+  //         this.setState({ 
+  //           articles: articles, 
+  //         })
+  //       })
+  //   }
+  // }
+
+   componentDidUpdate(prevState) {
+
+    if(this.props.location.search || this.state.query !== prevState.query){
+      Promise.resolve(getArticles(this.props.location.search || this.state.query))
         .then(articles => {
           this.setState({ 
             articles: articles, 

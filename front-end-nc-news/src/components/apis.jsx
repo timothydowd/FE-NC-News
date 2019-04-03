@@ -11,9 +11,9 @@ export const getArticlesBySort = (sortQuery) => {
 
 
 
-  export const getArticles = () => {
+  export const getArticles = (query = '') => {
     return Axios.get(
-      'https://ncnewstimdowd.herokuapp.com/api/articles'
+      `https://ncnewstimdowd.herokuapp.com/api/articles/${query}`
     )
     .then(articleData => {
       return articleData.data.articles

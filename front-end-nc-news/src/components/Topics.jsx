@@ -15,6 +15,7 @@ class Topics extends Component {
 
    state = {
       topics: [],
+      topicQuery: ''
       
      }
     
@@ -24,13 +25,16 @@ class Topics extends Component {
         <div>
             <h2>Topics</h2>
             <div>
+              <button>Create New Topic</button>
                                 {
                                     this.state.topics.map(topic => {
                                         return (
-                                                <div key={topic.slug} className='singleCommentContainer' >
-                                                    <p> Topic: {topic.slug} </p>
-                                                    <p> Description: {topic.description} </p>
-                                                </div>
+                                                <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug}>
+                                                  <div key={topic.slug} className='singleCommentContainer' >
+                                                      <p> Topic: {topic.slug} </p>
+                                                      <p> Description: {topic.description} </p>
+                                                  </div>
+                                                </Link>     
                                         )
                                     })   
                                 }
@@ -47,7 +51,6 @@ class Topics extends Component {
            this.setState({ 
              topics: topicData 
            })
-           console.log(topicData)
          })
     
         
