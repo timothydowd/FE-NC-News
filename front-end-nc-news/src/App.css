@@ -6,17 +6,28 @@
 
 
 .articleContainer {
-  border-style: solid;
-  border-color: green;
+
+  background-color: rgba(165, 165, 165, 0.973);
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
 
 .commentsContainer {
-  border-style: solid;
-  border-color: rgb(49, 0, 128);
+  
+  background-color: gray;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+ 
+}
+
+.singleCommentContainer {
+  background-color: rgba(165, 165, 165, 0.973);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  
+  margin-right: 10px;
+  margin-left: 10px;
 }

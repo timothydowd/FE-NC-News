@@ -12,7 +12,8 @@ class SingleArticle extends Component {
     state = { 
         articleByArticleId: {},
         commentsByArticleId: [],
-        wasCommentAdded: false
+        wasCommentAdded: false,
+        like: 0
     }
 
     componentDidMount() {
@@ -27,8 +28,8 @@ class SingleArticle extends Component {
     }
 
     componentDidUpdate() {
+        console.log(this.state.like)
         if( this.state.wasCommentAdded === true ){
-            console.log('condiiton met')
             Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
@@ -38,6 +39,20 @@ class SingleArticle extends Component {
                 })
             })
         }
+         else if( this.state.like !== 0 ) {
+             Promise.resolve(this.patchVoteByArticleId(this.state.like))
+             .then(updatedArticle => {
+                this.setState({ 
+                    articleByArticleId: updatedArticle, 
+                    like: 0 
+                })
+                console.log(this.state.articleByArticleId)
+             })
+             
+             
+             
+            
+         }
     }
 
     getArticleById = () => {
@@ -48,7 +63,12 @@ class SingleArticle extends Component {
             return articleData.data.article
         })
       }
+
+    commentAdded = () => {
+        this.setState({wasCommentAdded: true})
+    }
    
+
      getCommentsByArticleId = () => {
        return Axios.get(
            `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`
@@ -58,12 +78,22 @@ class SingleArticle extends Component {
          })
      }
    
-     commentAdded = () => {
-       this.setState({wasCommentAdded: true})
+    
+
+     handleLikeClick = (like) => {
+        //this.patchVoteByArticleId(like)
+        this.setState({like: like})
      }
 
-     handleVote = () => {
-         console.log('i got a click')
+     patchVoteByArticleId = (like) => {
+         return Axios.patch(
+            `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}`,
+            {inc_votes: like}
+          )
+          .then((articleData) => {
+              return articleData.data.updatedArticle
+               
+          })
      }
 
   
@@ -80,7 +110,7 @@ class SingleArticle extends Component {
                             <p> Created: {created_at} </p>
                             <p> Topic: {topic} </p>
                             <p> Likes: {votes} </p>
-                            <span role="img" aria-label='Close' onClick={this.handleVote} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={this.handleVote} >👎🏻</span> 
+                            <span role="img" aria-label='Close' onClick={() => this.handleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleLikeClick(-1)} >👎🏻</span> 
                         </div>
                         <div className='commentsContainer'>
                             <h3>comments</h3>
@@ -91,11 +121,12 @@ class SingleArticle extends Component {
                                 {
                                     this.state.commentsByArticleId.map(comment => {
                                         return (
-                                                <div key={comment.comment_id} className='commentsContainer' >
+                                                <div key={comment.comment_id} className='singleCommentContainer' >
                                                     <p> User: {comment.author} </p>
                                                     <p> Comment: {comment.body} </p>
                                                     <p> Created: {comment.created_at} </p>
                                                     <p> Likes: {comment.votes} </p>
+                                                    <span role="img" aria-label='Close' onClick={() => {}} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => {}} >👎🏻</span>
                                                 </div>
                                         )
                                     })   

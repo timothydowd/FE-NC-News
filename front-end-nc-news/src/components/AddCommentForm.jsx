@@ -21,10 +21,10 @@ class AddCommentForm extends Component {
   handleChange(event) {
     this.setState({newComment:{body: event.target.value}})
   }
-  
+
 
   handleFormSubmit(e) {
-    e.preventDefault();
+    //e.preventDefault();
 
     Axios.post(
         `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`,
@@ -47,8 +47,7 @@ class AddCommentForm extends Component {
             <textarea onChange={this.handleChange} placeholder='Add your thoughts....' rows='10' cols='45'/>
             <button onSubmit={this.handleFormSubmit}>Submit</button>
             </div>
-        
-    
+      
       </form>
     );
   }
