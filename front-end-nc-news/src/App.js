@@ -5,7 +5,7 @@ import Nav from './components/Nav'
 import Articles from './components/Articles'
 import SingleArticle from './components/SingleArticle'
 import Home from './components/Home'
-
+import Topics from './components/Topics'
 
 class App extends Component {
   render() {
@@ -15,6 +15,7 @@ class App extends Component {
           <Nav />
           <Router>
             <Home path='/' />
+            <Topics path='/topics' />
             <Articles path='/articles' />
             <SingleArticle path='/articles/:article_id' />
           </Router>

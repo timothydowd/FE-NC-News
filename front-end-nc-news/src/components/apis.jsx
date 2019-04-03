@@ -9,4 +9,24 @@ export const getArticlesBySort = (sortQuery) => {
     })
   }
 
-export default getArticlesBySort
+
+
+  export const getArticles = () => {
+    return Axios.get(
+      'https://ncnewstimdowd.herokuapp.com/api/articles'
+    )
+    .then(articleData => {
+      return articleData.data.articles
+    })
+  }
+
+  export const getTopics = () => {
+    return Axios.get(
+      'https://ncnewstimdowd.herokuapp.com/api/topics'
+    )
+    .then(topicData => {
+      return topicData.data.topics
+    })
+  }
+
+export default { getArticlesBySort, getArticles, getTopics }

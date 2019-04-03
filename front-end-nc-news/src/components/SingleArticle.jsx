@@ -30,7 +30,6 @@ class SingleArticle extends Component {
     componentDidUpdate() {
         
         if( this.state.wasCommentAdded === true ){
-    
             Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
@@ -48,8 +47,7 @@ class SingleArticle extends Component {
                     like: 0 
                 })
                
-             })
-              
+             }) 
          }
     }
 

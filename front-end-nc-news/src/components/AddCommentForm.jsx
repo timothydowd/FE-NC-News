@@ -22,7 +22,6 @@ class AddCommentForm extends Component {
     this.setState({newComment:{body: event.target.value}})
   }
 
-
   handleFormSubmit(e) {
     e.preventDefault();
     Axios.post(
@@ -37,7 +36,6 @@ class AddCommentForm extends Component {
       })
   }
 
-  
   render() {
     return (
       <form className="commentContainer" onSubmit={this.handleFormSubmit}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from '@reach/router'
 import Axios from 'axios';
-import getArticlesBySort from './apis'
+import { getArticlesBySort, getArticles }  from './apis'
 
 
 //https://ncnewstimdowd.herokuapp.com/api
@@ -17,7 +17,7 @@ class Articles extends Component {
 
     this.state = {
       articles: [],
-      sortBy: ''
+      sortByQuery: ''
      }
     
     
@@ -57,38 +57,35 @@ class Articles extends Component {
     )   
   }
 
-  handleChange(e) {
-    e.preventDefault();
-    console.log(e.target.value)
-    Promise.resolve(getArticlesBySort(e.target.value))
-             .then(articleData => {
-               
-                this.setState({ 
-                  articles: articleData, 
-                })
-                console.log(articleData)
-               
-             })
+  
+
+   handleChange(e) {
+     e.preventDefault();
+     this.setState({sortByQuery:e.target.value})
      
-  }
+   }
+
 
   componentDidMount() {
-    this.getArticles();
-  }
-
-  componentDidUpdate() {
+    Promise.resolve(getArticles())
+        .then(articleData => {
+          this.setState({ 
+            articles: articleData, 
+          })
+        })
     
   }
 
-  getArticles = () => {
-    Axios.get(
-      'https://ncnewstimdowd.herokuapp.com/api/articles'
-    )
-    .then(articleData => {
-      this.setState({ articles: articleData.data.articles })
-    })
+  componentDidUpdate(prevState) {
+    if(this.state.sortByQuery !== prevState.sortByQuery){
+      Promise.resolve(getArticlesBySort(this.state.sortByQuery))
+        .then(articles => {
+          this.setState({ 
+            articles: articles, 
+          })
+        })
+    }
   }
-
   
 }
 
