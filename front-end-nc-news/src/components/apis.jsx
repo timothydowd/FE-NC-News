@@ -1,11 +1,12 @@
 import Axios from 'axios';
 
-export const getArticleById = (articleId) => {
+export const getArticlesBySort = (sortQuery) => {
     return Axios.get(
-      `https://ncnewstimdowd.herokuapp.com/api/articles/${articleId}`
+      `https://ncnewstimdowd.herokuapp.com/api/articles/${sortQuery}`
     )
     .then(articleData => {
-        return articleData.data.article
+        return articleData.data.articles
     })
   }
 
+export default getArticlesBySort

@@ -28,8 +28,9 @@ class SingleArticle extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.like)
+        
         if( this.state.wasCommentAdded === true ){
+    
             Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
@@ -46,12 +47,9 @@ class SingleArticle extends Component {
                     articleByArticleId: updatedArticle, 
                     like: 0 
                 })
-                console.log(this.state.articleByArticleId)
+               
              })
-             
-             
-             
-            
+              
          }
     }
 
@@ -64,19 +62,19 @@ class SingleArticle extends Component {
         })
       }
 
-    commentAdded = () => {
+    handleAddCommentClick = () => {
         this.setState({wasCommentAdded: true})
     }
    
 
-     getCommentsByArticleId = () => {
-       return Axios.get(
+    getCommentsByArticleId = () => {
+        return Axios.get(
            `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`
-         )
-         .then(commentsData => {
+        )
+        .then(commentsData => {
              return commentsData.data.commentsByArticleId
-         })
-     }
+        })
+    }
    
     
 
@@ -115,7 +113,7 @@ class SingleArticle extends Component {
                         <div className='commentsContainer'>
                             <h3>comments</h3>
 
-                            <AddCommentForm article_id={this.props.article_id} commentAdded={this.commentAdded} />
+                            <AddCommentForm article_id={this.props.article_id} handleAddCommentClick={this.handleAddCommentClick} />
 
                             <div>
                                 {

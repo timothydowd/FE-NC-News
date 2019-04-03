@@ -24,8 +24,7 @@ class AddCommentForm extends Component {
 
 
   handleFormSubmit(e) {
-    //e.preventDefault();
-
+    e.preventDefault();
     Axios.post(
         `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`,
         {
@@ -33,7 +32,7 @@ class AddCommentForm extends Component {
             username: "butter_bridge"
         }
       ).then(() => {
-        this.props.commentAdded()
+        this.props.handleAddCommentClick()
 
       })
   }
