@@ -9,7 +9,8 @@ class AddCommentForm extends Component {
       newComment: {
         username: "",
         body: ""
-      }
+      },
+      
     };
     
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -18,37 +19,33 @@ class AddCommentForm extends Component {
   }
 
   handleChange(event) {
-    
     this.setState({newComment:{body: event.target.value}})
-    
-
-
   }
+  
 
   handleFormSubmit(e) {
     e.preventDefault();
 
-    //let commentData = this.state.newComment;
-    console.log(this.props.article_id)
     Axios.post(
         `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`,
         {
             body: this.state.newComment.body,
             username: "butter_bridge"
         }
-      )
+      ).then(() => {
+        this.props.commentAdded()
+
+      })
   }
 
   
-
-
   render() {
     return (
       <form className="commentContainer" onSubmit={this.handleFormSubmit}>
         <div className="form-group">
             
             <textarea onChange={this.handleChange} placeholder='Add your thoughts....' rows='10' cols='45'/>
-            <button action={this.handleFormSubmit}>Submit</button>
+            <button onSubmit={this.handleFormSubmit}>Submit</button>
             </div>
         
     
@@ -56,7 +53,6 @@ class AddCommentForm extends Component {
     );
   }
 }
-
 
 
 export default AddCommentForm;

@@ -48,7 +48,6 @@ class Articles extends Component {
     )
     .then(articleData => {
       this.setState({ articles: articleData.data.articles })
-      //console.log(this.state.articles)
     })
   }
 
