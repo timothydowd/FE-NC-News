@@ -13,13 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>NC NEWS</h1>
-          {/* <Nav />
-          <Router>
-            <Home path='/' />
-            <Topics path='/topics' />
-            <Articles path='/articles' />
-            <SingleArticle path='/articles/:article_id' />
-          </Router> */}
+        
           <Nav />
           <Router>
             <Home path='/' />

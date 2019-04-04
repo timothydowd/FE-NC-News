@@ -105,7 +105,8 @@ class SingleArticle extends Component {
                             <p> Comments: {comment_count} </p>
                             <p> Created: {created_at} </p>
                             <p> Topic: {topic} </p>
-                            <p> Likes: {votes} </p>
+                            <p> Likes: {votes+this.state.like} </p>
+                            
                             <span role="img" aria-label='Close' onClick={() => this.handleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleLikeClick(-1)} >👎🏻</span> 
                         </div>
                         <div className='commentsContainer'>

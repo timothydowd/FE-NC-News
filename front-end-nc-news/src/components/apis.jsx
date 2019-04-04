@@ -6,7 +6,7 @@ import Axios from 'axios';
     let query2Formatted = ''
     if(query2 !== ''){
       query2Formatted = `&${query2.slice(1)}`
-      console.log(query1,query2Formatted)
+      
     }
     else {
       query2Formatted = query2

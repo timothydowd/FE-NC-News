@@ -18,8 +18,8 @@ class Articles extends Component {
     this.state = {
       articles: [],
       sortByQuery: '',
-      topicQuery: '',
-      query: ''
+      query: '',
+      articleAdded: false
      }
     
     
@@ -31,7 +31,7 @@ class Articles extends Component {
     
     return (
         <div>
-          <AddArticleForm />
+          <AddArticleForm setArticleAddedToTrue={this.setArticleAddedToTrue} topicQuery={this.props.topicQuery}/>
           <select onChange={this.handleChange}>
             <option value="">Newest</option>
             <option value="?sort_by=votes">Most Liked</option>
@@ -63,8 +63,11 @@ class Articles extends Component {
   }
 
   
-
-  //  
+  setArticleAddedToTrue = () => {
+    console.log(this.state)
+    this.setState({articleAdded: true})
+  }
+  
   
   handleChange(e) {
     e.preventDefault();
@@ -75,31 +78,31 @@ class Articles extends Component {
 
   componentDidMount() {
     
-      // Promise.resolve(getArticles(this.props.location.search))
       Promise.resolve(getArticles(this.props.topicQuery))
           .then(articleData => {
-            console.log(articleData)
+            
             this.setState({ 
               articles: articleData, 
+              sortByQuery: '',
+              query: '',
+              articleAdded: false
             })
           })
-    //}
+  
   }
 
   
 
-   componentDidUpdate(prevState) {
-    //console.log(this.props.topicQuery,this.state.query)
-    // if(this.props.location.search || this.state.query !== prevState.query){
-      // Promise.resolve(getArticles(this.props.location.search || this.state.query))
-      if(this.state.query !== prevState.query){
+  componentDidUpdate(prevState) {
+   
+      if(this.state.query !== prevState.query || this.state.articleAdded === true){
         Promise.resolve(getArticles(this.props.topicQuery, this.state.query))
           .then(articles => {
             this.setState({ 
               articles: articles,
               sortByQuery: prevState.sortByQuery,
-              topicQuery: prevState.topicQuery,
-              query: prevState.query 
+              query: prevState.query, 
+              articleAdded: false
             })
           })
       }
