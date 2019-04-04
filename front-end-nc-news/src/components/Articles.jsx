@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from '@reach/router'
 import Axios from 'axios';
-import { getArticlesBySort, getArticles }  from './apis'
-
+import { getArticles }  from './apis'
+import AddArticleForm from './AddArticleForm'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -31,12 +31,14 @@ class Articles extends Component {
     
     return (
         <div>
+          <AddArticleForm />
           <select onChange={this.handleChange}>
             <option value="">Newest</option>
             <option value="?sort_by=votes">Most Liked</option>
             <option value="?sort_by=comment_count">Most Commented</option>
             <option value="?sort_by=votes&order=asc">Most Disliked</option>
           </select>
+          
           
           
             {
@@ -73,7 +75,8 @@ class Articles extends Component {
 
   componentDidMount() {
     
-      Promise.resolve(getArticles(this.props.location.search))
+      // Promise.resolve(getArticles(this.props.location.search))
+      Promise.resolve(getArticles(this.props.topicQuery))
           .then(articleData => {
             console.log(articleData)
             this.setState({ 
@@ -81,33 +84,26 @@ class Articles extends Component {
             })
           })
     //}
-    
-
-    
   }
 
-  // componentDidUpdate(prevState) {
-  //   if(this.state.sortByQuery !== prevState.sortByQuery){
-  //     Promise.resolve(getArticlesBySort(this.state.sortByQuery))
-  //       .then(articles => {
-  //         this.setState({ 
-  //           articles: articles, 
-  //         })
-  //       })
-  //   }
-  // }
+  
 
    componentDidUpdate(prevState) {
-
-    if(this.props.location.search || this.state.query !== prevState.query){
-      Promise.resolve(getArticles(this.props.location.search || this.state.query))
-        .then(articles => {
-          this.setState({ 
-            articles: articles, 
+    //console.log(this.props.topicQuery,this.state.query)
+    // if(this.props.location.search || this.state.query !== prevState.query){
+      // Promise.resolve(getArticles(this.props.location.search || this.state.query))
+      if(this.state.query !== prevState.query){
+        Promise.resolve(getArticles(this.props.topicQuery, this.state.query))
+          .then(articles => {
+            this.setState({ 
+              articles: articles,
+              sortByQuery: prevState.sortByQuery,
+              topicQuery: prevState.topicQuery,
+              query: prevState.query 
+            })
           })
-        })
+      }
     }
-  }
   
 }
 
