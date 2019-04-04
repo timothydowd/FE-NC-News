@@ -37,8 +37,8 @@ class AddArticleForm extends Component {
     event.preventDefault();
     const { title, body } = this.state.newArticle
     const topic = this.props.topicQuery.slice(7)
-    
-    Promise.resolve(postArticle( title, body, topic, 'butter_bridge' ))
+    console.log(this.props.userLoggedIn)
+    Promise.resolve(postArticle( title, body, topic, this.props.userLoggedIn ))
     .then(() =>  this.props.setArticleAddedToTrue())
     
   }

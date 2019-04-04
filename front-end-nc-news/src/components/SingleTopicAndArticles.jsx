@@ -19,7 +19,7 @@ class SingleTopicAndArticles extends Component {
         return (
             <div>
                 <p>Articles in {this.props.location.search.slice(7)}</p>
-                <Articles topicQuery={this.props.location.search}/>
+                <Articles userLoggedIn={this.props.userLoggedIn} topicQuery={this.props.location.search}/>
             </div>
         )
 

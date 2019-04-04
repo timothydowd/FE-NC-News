@@ -31,7 +31,7 @@ class Articles extends Component {
     
     return (
         <div>
-          <AddArticleForm setArticleAddedToTrue={this.setArticleAddedToTrue} topicQuery={this.props.topicQuery}/>
+          <AddArticleForm userLoggedIn={this.props.userLoggedIn} setArticleAddedToTrue={this.setArticleAddedToTrue} topicQuery={this.props.topicQuery}/>
           <select onChange={this.handleChange}>
             <option value="">Newest</option>
             <option value="?sort_by=votes">Most Liked</option>

@@ -50,18 +50,22 @@ class Topics extends Component {
      Promise.resolve(getTopics())
          .then(topicData => {
            this.setState({ 
-             topics: topicData 
+             topics: topicData,
+            
+             
            })
          })
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevState) {
     console.log('loggedin?', this.props.userLoggedIn)
     if(this.state.wasTopicAdded === true){
       Promise.resolve(getTopics())
          .then(topicData => {
            this.setState({ 
-             topics: topicData 
+             topics: topicData,
+             wasTopicAdded: false,
+             topicQuery: prevState.topicQuery
            })
          })
     }

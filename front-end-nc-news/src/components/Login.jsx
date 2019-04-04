@@ -42,8 +42,8 @@ class Login extends Component {
         Promise.resolve(getUser(this.state.username))
         .then(userDetails => {
             
-            this.props.setUserLogin(userDetails.username)
-            console.log(userDetails)
+            this.props.setUserLogin(userDetails.username, userDetails.avatar_url)
+            
         })
     }
 
