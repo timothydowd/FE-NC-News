@@ -35,6 +35,11 @@ class AddTopicForm extends Component {
     .then(() =>  this.props.setTopicAddedToTrue())
     
   }
+  componentDidMount(){
+    
+  }
+
+  
 
   render() {
     return (
@@ -42,12 +47,13 @@ class AddTopicForm extends Component {
         <div className="form-group">
             <textarea onChange={this.handleChangeTopic} placeholder='Name your topic....' rows='1' cols='45'/>
             <textarea onChange={this.handleChangeDescription} placeholder='Add a description....' rows='5' cols='45'/>
-            <button onSubmit={this.handleFormSubmit}>Add Topic</button>
+            <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Topic</button>
             </div>
       
       </form>
     );
   }
+  
 }
 
 

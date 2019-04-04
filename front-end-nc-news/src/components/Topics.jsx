@@ -22,7 +22,7 @@ class Topics extends Component {
     return (
         <div>
             <h2>Topics</h2>
-            <AddTopicForm setTopicAddedToTrue={this.setTopicAddedToTrue}/>
+            <AddTopicForm setTopicAddedToTrue={this.setTopicAddedToTrue} userLoggedIn={this.props.userLoggedIn}/>
             <div>
                 {
                   this.state.topics.map(topic => {
@@ -46,6 +46,7 @@ class Topics extends Component {
 }
 
   componentDidMount() {
+    
      Promise.resolve(getTopics())
          .then(topicData => {
            this.setState({ 
@@ -55,6 +56,7 @@ class Topics extends Component {
   }
 
   componentDidUpdate() {
+    console.log('loggedin?', this.props.userLoggedIn)
     if(this.state.wasTopicAdded === true){
       Promise.resolve(getTopics())
          .then(topicData => {

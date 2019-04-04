@@ -7,8 +7,38 @@ import SingleArticle from './components/SingleArticle'
 import Home from './components/Home'
 import Topics from './components/Topics'
 import SingleTopicAndArticles from './components/SingleTopicAndArticles'
+import Login from './components/Login'
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userLoggedIn: null
+      
+    };
+    
+    this.setUserLogin = this.setUserLogin.bind(this);
+    
+  }
+
+  componentDidMount(){
+    this.setState({user: null})
+  }
+
+  componentDidUpdate(){
+    if(this.state.userLoggedIn !== null){
+      console.log(this.state.userLoggedIn, 'is logged in')
+    }
+  }
+
+  setUserLogin(user){
+    
+    this.setState({userLoggedIn: user})
+   
+  }
+
   render() {
     return (
       <div className="App">
@@ -16,8 +46,10 @@ class App extends Component {
         
           <Nav />
           <Router>
+            
             <Home path='/' />
-            <Topics path='/topics' />
+            <Login path='/login' setUserLogin={this.setUserLogin}/>
+            <Topics path='/topics' userLoggedIn={this.state.userLoggedIn} />
             <SingleTopicAndArticles path='/articles' />
             {/* <Articles path='/articles' /> */}
             <SingleArticle path='/articles/:article_id' />

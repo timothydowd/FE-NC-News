@@ -50,7 +50,18 @@ import Axios from 'axios';
      }
    ).then((status) => console.log(status))
 
+  
  }
+
+ export const getUser = (username = '') => {
+  return Axios.get(
+    `https://ncnewstimdowd.herokuapp.com/api/users/${username}`
+  ).then((userData) => {
+    if(Array.isArray(userData)) return userData.data.users
+    else return userData.data.user
+    
+  })
+}
   
 
 
