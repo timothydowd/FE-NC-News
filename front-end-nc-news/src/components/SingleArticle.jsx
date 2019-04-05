@@ -3,7 +3,7 @@ import '../App.css';
 import { Link, navigate } from '@reach/router'
 import Axios from 'axios';
 import AddCommentForm from '../components/AddCommentForm'
-import { deleteArticle } from '../components/apis'
+import { deleteArticle, deleteComment } from '../components/apis'
 
 
 //https://ncnewstimdowd.herokuapp.com/api
@@ -23,6 +23,7 @@ class SingleArticle extends Component {
         
         
         this.handleClickDeleteArticle = this.handleClickDeleteArticle.bind(this)
+        this.handleClickDeleteComment = this.handleClickDeleteComment.bind(this)
        
       }
 
@@ -42,13 +43,14 @@ class SingleArticle extends Component {
 
     componentDidUpdate() {
         
-        if( this.state.wasCommentAdded === true ){
+        if( this.state.wasCommentAdded || this.state.wasCommentDeleted ){
             Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
                     articleByArticleId: articleData, 
                     commentsByArticleId: commentsData,
-                    wasCommentAdded: false
+                    wasCommentAdded: false,
+                    wasCommentDeleted: false
                 })
             })
         }
@@ -116,6 +118,19 @@ class SingleArticle extends Component {
 
      }
 
+     handleClickDeleteComment(commentId) {
+         
+         
+        Promise.resolve(deleteComment(commentId))
+        .then(() => {
+
+            this.setState({wasCommentDeleted: true})
+            
+        })
+        
+
+    }
+
   
     render() {
         const { title, body, author, comment_count, created_at, topic, votes } = this.state.articleByArticleId
@@ -150,6 +165,9 @@ class SingleArticle extends Component {
                                                     <p> Created: {comment.created_at} </p>
                                                     <p> Likes: {comment.votes} </p>
                                                     <span role="img" aria-label='Close' onClick={() => {}} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => {}} >👎🏻</span>
+                                                    <div>
+                                                        <button disabled={this.props.userLoggedIn !== comment.author } onClick={() => this.handleClickDeleteComment(comment.comment_id)} >Delete Comment</button>
+                                                     </div>
                                                 </div>
                                         )
                                     })   
