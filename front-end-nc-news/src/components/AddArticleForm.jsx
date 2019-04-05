@@ -37,7 +37,6 @@ class AddArticleForm extends Component {
     event.preventDefault();
     const { title, body } = this.state.newArticle
     const topic = this.props.topicQuery.slice(7)
-    console.log(this.props.userLoggedIn)
     Promise.resolve(postArticle( title, body, topic, this.props.userLoggedIn ))
     .then(() =>  this.props.setArticleAddedToTrue())
     
@@ -56,7 +55,7 @@ class AddArticleForm extends Component {
             <textarea onChange={this.handleChangeTitle} placeholder='Title' rows='1' cols='45'/>
             
             <textarea onChange={this.handleChangeBody} placeholder='Your content....' rows='5' cols='45'/>
-            <button onSubmit={this.handleFormSubmit}>Add Article</button>
+            <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Article</button>
             </div>
       
       </form>

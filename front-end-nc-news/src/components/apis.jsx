@@ -19,6 +19,17 @@ import Axios from 'axios';
     })
   }
 
+
+  export const deleteArticle = (articleId) => {
+   
+    return Axios.delete(
+      `https://ncnewstimdowd.herokuapp.com/api/articles/${articleId}`
+    )
+    .then(status => {
+      console.log(status)
+    })
+  }
+
   export const getTopics = () => {
     return Axios.get(
       'https://ncnewstimdowd.herokuapp.com/api/topics'
@@ -66,4 +77,4 @@ import Axios from 'axios';
 
 
 
-export default {  getArticles, getTopics, postTopic }
+export default {  getArticles, getTopics, postTopic, deleteArticle }

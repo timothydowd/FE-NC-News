@@ -22,6 +22,7 @@ class App extends Component {
     };
     
     this.setUserLogin = this.setUserLogin.bind(this);
+    this.setUserLogout = this.setUserLogout.bind(this);
     
   }
 
@@ -42,10 +43,14 @@ class App extends Component {
    
   }
 
+  setUserLogout(){
+    this.setState({userLoggedIn: null, avatar_url: null})
+  }
+
   render() {
     return (
       <div className="App">
-        <h1>NC NEWS</h1> <UserInfo userLoggedIn={this.state.userLoggedIn} avatarUrl={this.state.avatar_url}/>
+        <h1>NC NEWS</h1> <UserInfo userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
         
           <Nav />
           <Router>
@@ -55,7 +60,7 @@ class App extends Component {
             <Topics path='/topics' userLoggedIn={this.state.userLoggedIn} />
             <SingleTopicAndArticles path='/articles' userLoggedIn={this.state.userLoggedIn} />
             {/* <Articles path='/articles' /> */}
-            <SingleArticle path='/articles/:article_id' />
+            <SingleArticle path='/articles/:article_id' userLoggedIn={this.state.userLoggedIn} />
           </Router>
       </div>
     );

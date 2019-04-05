@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Link } from '@reach/router'
+import { Link, navigate } from '@reach/router'
 import Axios from 'axios';
 import AddCommentForm from '../components/AddCommentForm'
+import { deleteArticle } from '../components/apis'
 
 
 //https://ncnewstimdowd.herokuapp.com/api
 
 class SingleArticle extends Component {
 
-    state = { 
-        articleByArticleId: {},
-        commentsByArticleId: [],
-        wasCommentAdded: false,
-        like: 0
-    }
+    constructor(props) {
+        super(props);
+    
+        this.state = { 
+            articleByArticleId: {},
+            commentsByArticleId: [],
+            wasCommentAdded: false,
+            like: 0,
+            
+        }
+        
+        
+        this.handleClickDeleteArticle = this.handleClickDeleteArticle.bind(this)
+       
+      }
+
+    
 
     componentDidMount() {
         Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
@@ -23,6 +35,7 @@ class SingleArticle extends Component {
                     articleByArticleId: articleData, 
                     commentsByArticleId: commentsData,
                 })
+                console.log(this.state.articleByArticleId)
             
             })
     }
@@ -77,9 +90,10 @@ class SingleArticle extends Component {
     
 
      handleLikeClick = (like) => {
-        //this.patchVoteByArticleId(like)
-        this.setState({like: like})
+        
+        if(this.props.userLoggedIn) this.setState({like: like})
      }
+
 
      patchVoteByArticleId = (like) => {
          return Axios.patch(
@@ -90,6 +104,16 @@ class SingleArticle extends Component {
               return articleData.data.updatedArticle
                
           })
+     }
+
+     handleClickDeleteArticle() {
+         
+         Promise.resolve(deleteArticle(this.state.articleByArticleId.article_id))
+         .then(() => {
+             navigate('/articles')
+         })
+         
+
      }
 
   
@@ -106,13 +130,15 @@ class SingleArticle extends Component {
                             <p> Created: {created_at} </p>
                             <p> Topic: {topic} </p>
                             <p> Likes: {votes+this.state.like} </p>
-                            
                             <span role="img" aria-label='Close' onClick={() => this.handleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleLikeClick(-1)} >👎🏻</span> 
+                            <div>
+                                <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>
+                            </div>
                         </div>
                         <div className='commentsContainer'>
                             <h3>comments</h3>
 
-                            <AddCommentForm article_id={this.props.article_id} handleAddCommentClick={this.handleAddCommentClick} />
+                            <AddCommentForm article_id={this.props.article_id} handleAddCommentClick={this.handleAddCommentClick} userLoggedIn={this.props.userLoggedIn} />
 
                             <div>
                                 {

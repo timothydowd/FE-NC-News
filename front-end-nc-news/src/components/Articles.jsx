@@ -44,7 +44,7 @@ class Articles extends Component {
             {
                 this.state.articles.map(article => {
                     return (
-                        <Link to ={`/articles/${article.article_id}`} key={article.article_id}>
+                        <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
                             <div className='articleContainer' >
                                 <p> Title: {article.title} </p>
                                 <p> Author: {article.author} </p>

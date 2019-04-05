@@ -42,7 +42,7 @@ class AddCommentForm extends Component {
         <div className="form-group">
             
             <textarea onChange={this.handleChange} placeholder='Add your thoughts....' rows='10' cols='45'/>
-            <button onSubmit={this.handleFormSubmit}>Submit</button>
+            <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Comment</button>
             </div>
       
       </form>
