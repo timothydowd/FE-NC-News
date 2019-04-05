@@ -3,7 +3,7 @@ import '../App.css';
 import { Link, navigate } from '@reach/router'
 import Axios from 'axios';
 import AddCommentForm from '../components/AddCommentForm'
-import { deleteArticle, deleteComment } from '../components/apis'
+import { deleteArticle, deleteComment, addVoteToComment } from '../components/apis'
 
 
 //https://ncnewstimdowd.herokuapp.com/api
@@ -17,6 +17,7 @@ class SingleArticle extends Component {
             articleByArticleId: {},
             commentsByArticleId: [],
             wasCommentAdded: false,
+            wasCommentLiked: false,
             like: 0,
             
         }
@@ -64,6 +65,19 @@ class SingleArticle extends Component {
                
              }) 
          }
+
+         else if( this.state.wasCommentLiked){
+            Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
+            .then(([articleData, commentsData]) =>{
+                this.setState({ 
+                    articleByArticleId: articleData, 
+                    commentsByArticleId: commentsData,
+                    wasCommentLiked: false
+                })
+                console.log(this.state.articleByArticleId)
+            
+            })
+         }
     }
 
     getArticleById = () => {
@@ -94,6 +108,18 @@ class SingleArticle extends Component {
      handleLikeClick = (like) => {
         
         if(this.props.userLoggedIn) this.setState({like: like})
+     }
+
+     handleCommentLikeClick = (like, commentId) => {
+         
+        
+        if(this.props.userLoggedIn){
+            console.log('clicked')
+            Promise.resolve(addVoteToComment(like, commentId))
+            .then((updatedComment) => {
+                this.setState({wasCommentLiked: true})
+            })
+        }
      }
 
 
@@ -133,7 +159,9 @@ class SingleArticle extends Component {
 
   
     render() {
+
         const { title, body, author, comment_count, created_at, topic, votes } = this.state.articleByArticleId
+
         return(
             <div>
                     <h1>single article</h1>
@@ -164,7 +192,7 @@ class SingleArticle extends Component {
                                                     <p> Comment: {comment.body} </p>
                                                     <p> Created: {comment.created_at} </p>
                                                     <p> Likes: {comment.votes} </p>
-                                                    <span role="img" aria-label='Close' onClick={() => {}} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => {}} >👎🏻</span>
+                                                    <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, comment.comment_id)} >👎🏻</span>
                                                     <div>
                                                         <button disabled={this.props.userLoggedIn !== comment.author } onClick={() => this.handleClickDeleteComment(comment.comment_id)} >Delete Comment</button>
                                                      </div>

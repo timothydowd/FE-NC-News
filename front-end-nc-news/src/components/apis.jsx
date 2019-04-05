@@ -84,9 +84,21 @@ import Axios from 'axios';
   })
 }
 
+export const addVoteToComment = (like, commentId) => {
+  return Axios.patch(
+     `https://ncnewstimdowd.herokuapp.com/api/comments/${commentId}`,
+     {inc_votes: like}
+   )
+   .then((updatedComment) => {
+     return updatedComment
+       //return updatedComment.data.updatedArticle
+        
+   })
+}
+
 
   
 
 
 
-export default {  getArticles, getTopics, postTopic, deleteArticle, deleteComment }
+export default {  getArticles, getTopics, postTopic, deleteArticle, deleteComment, addVoteToComment }

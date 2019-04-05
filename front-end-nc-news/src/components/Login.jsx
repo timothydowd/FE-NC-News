@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { getUser } from './apis'
+import { navigate } from '@reach/router';
 
 
 class Login extends Component {
@@ -43,6 +44,7 @@ class Login extends Component {
         .then(userDetails => {
             
             this.props.setUserLogin(userDetails.username, userDetails.avatar_url)
+            navigate('/topics')
             
         })
     }
