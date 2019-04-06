@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import guestAvatar from '../images/user.png'
 
 
 
@@ -28,7 +29,7 @@ class UserInfo extends Component {
         return (
             
             <div className="articleContainer">
-                <span>{this.state.LoginStatus}<img src={this.props.avatarUrl} alt='../public/user.png' width={50} height={50} /><button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
+                <span>{this.state.LoginStatus}<img src={this.props.avatarUrl} alt={'../images/user.png'} width={50} height={50} /><button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
 
                   
             </div>

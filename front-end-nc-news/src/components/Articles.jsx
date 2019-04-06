@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 import Axios from 'axios';
 import { getArticles }  from './apis'
 import AddArticleForm from './AddArticleForm'
+import loaderGif from '../images/roboloader.gif'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -19,7 +20,8 @@ class Articles extends Component {
       articles: [],
       sortByQuery: '',
       query: '',
-      articleAdded: false
+      articleAdded: false,
+      loading: true
      }
     
     
@@ -28,6 +30,10 @@ class Articles extends Component {
   }
   
   render() {
+
+    if(this.state.loading) return (
+      <img src={loaderGif} height='150px' width='150px'/>
+    )
     
     return (
         <div>
@@ -65,7 +71,7 @@ class Articles extends Component {
   
   setArticleAddedToTrue = () => {
     console.log(this.state)
-    this.setState({articleAdded: true})
+    this.setState({articleAdded: true, loading: true})
   }
   
   
@@ -77,7 +83,6 @@ class Articles extends Component {
 
 
   componentDidMount() {
-    
       Promise.resolve(getArticles(this.props.topicQuery))
           .then(articleData => {
             
@@ -85,7 +90,8 @@ class Articles extends Component {
               articles: articleData, 
               sortByQuery: '',
               query: '',
-              articleAdded: false
+              articleAdded: false,
+              loading:false
             })
           })
   
@@ -102,7 +108,8 @@ class Articles extends Component {
               articles: articles,
               sortByQuery: prevState.sortByQuery,
               query: prevState.query, 
-              articleAdded: false
+              articleAdded: false,
+              loading: false
             })
           })
       }
