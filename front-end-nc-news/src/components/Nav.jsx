@@ -3,11 +3,11 @@ import { Link } from '@reach/router'
 
 
 const Nav = props => {           
-       return <nav>
+       return <nav className="nav">
            <Link to='/'>Home</Link>
-           <span> - </span>
+          
            <Link to='/topics'>Articles By Topic</Link>
-            <span> - </span>
+            
            {/*<Link to='/articles'>All Articles</Link> */}
            <Link to='/login'>Log in</Link>
            

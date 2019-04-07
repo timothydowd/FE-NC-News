@@ -4,13 +4,15 @@ import Axios from 'axios';
 
   export const getArticles = (query1 = '', query2 = '') => {
     let query2Formatted = ''
-    if(query2 !== ''){
+    if(query2 !== '' && query1!== ''){
       query2Formatted = `&${query2.slice(1)}`
       
     }
     else {
       query2Formatted = query2
     }
+
+    console.log(`https://ncnewstimdowd.herokuapp.com/api/articles/${query1}${query2Formatted}`)
     return Axios.get(
       `https://ncnewstimdowd.herokuapp.com/api/articles/${query1}${query2Formatted}`
     )
