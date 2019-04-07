@@ -37,7 +37,7 @@ class SingleArticle extends Component {
                     articleByArticleId: articleData, 
                     commentsByArticleId: commentsData,
                 })
-                console.log(this.state.articleByArticleId)
+               
             
             })
     }
@@ -74,7 +74,7 @@ class SingleArticle extends Component {
                     commentsByArticleId: commentsData,
                     wasCommentLiked: false
                 })
-                console.log(this.state.articleByArticleId)
+              
             
             })
          }
@@ -114,7 +114,6 @@ class SingleArticle extends Component {
          
         
         if(this.props.userLoggedIn){
-            console.log('clicked')
             Promise.resolve(addVoteToComment(like, commentId))
             .then((updatedComment) => {
                 this.setState({wasCommentLiked: true})

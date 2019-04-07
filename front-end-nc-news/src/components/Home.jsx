@@ -16,7 +16,7 @@ class Home extends Component {
     return (
       <div className="App">
         <h1>Home page</h1>
-        <p>this page will show all popular articles, in the mean time you can access articles by using articles by topic  **better viewed in mobile device mode</p>
+       
         <Articles inHomePage = {this.state.inHomePage} />
          
       </div>

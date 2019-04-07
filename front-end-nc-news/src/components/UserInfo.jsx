@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import guestAvatar from '../images/user.png'
-
+import UserContent from '../components/UserContent'
+import { Link } from '@reach/router'
 
 
 
@@ -12,7 +13,8 @@ class UserInfo extends Component {
     
         this.state = {
           
-            LoginStatus: 'Please Log in'
+            LoginStatus: <Link to='/login'>Log in</Link>,
+            UserContentLink: false
             
         };
         
@@ -27,7 +29,7 @@ class UserInfo extends Component {
             
             <div className="userInfo">
            
-                <span>{this.state.LoginStatus}<img src={this.props.avatarUrl || guestAvatar} width={50} height={50} /><button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
+                <span>{this.state.LoginStatus}<img src={this.props.avatarUrl || guestAvatar} width={30} height={30} />{this.state.UserContentLink}<button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
 
                   
             </div>
@@ -35,16 +37,21 @@ class UserInfo extends Component {
     }
 
     handleLogOutClick(){
-        console.log(this.props.setUserLogout)
+       
         this.props.setUserLogout()
+        this.setState({
+            LoginStatus: <Link to='/login'>Log in</Link>,
+            UserContentLink: false
+        })
           
     }
 
   componentDidUpdate(prevProps){
-      console.log(this.props)
+     
       if(this.props.userLoggedIn && prevProps.userLoggedIn !== this.props.userLoggedIn){
           this.setState({
-              LoginStatus: `Logged in as ${this.props.userLoggedIn}`
+              LoginStatus: `Logged in as ${this.props.userLoggedIn}`,
+              UserContentLink: <Link to='/usercontent'>Your Content</Link>
               
             })
       }

@@ -10,6 +10,7 @@ import SingleTopicAndArticles from './components/SingleTopicAndArticles'
 import Login from './components/Login'
 import UserInfo from './components/UserInfo'
 import Header from './components/Header' 
+import UserContent from './components/UserContent'
 
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
 
     this.state = {
       userLoggedIn: null,
-      avatar_url: null
+      avatar_url: null,
+     
       
     };
     
@@ -34,7 +36,7 @@ class App extends Component {
 
   componentDidUpdate(){
     if(this.state.userLoggedIn !== null){
-      console.log(this.state.userLoggedIn, 'is logged in', this.state.avatar_url)
+      
 
     }
   }
@@ -49,14 +51,16 @@ class App extends Component {
     this.setState({userLoggedIn: null, avatar_url: null})
   }
 
+ 
+
   render() {
     return (
       <div className="App">
 
          <Header />
-         <UserInfo userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
+         
         
-          <Nav />
+          <Nav userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
           <Router>
             
             <Home path='/' />
@@ -65,6 +69,7 @@ class App extends Component {
             <SingleTopicAndArticles path='/articles' userLoggedIn={this.state.userLoggedIn} />
             {/* <Articles path='/articles' /> */}
             <SingleArticle path='/articles/:article_id' userLoggedIn={this.state.userLoggedIn} />
+            <UserContent path='/usercontent' userLoggedIn={this.state.userLoggedIn}  />
           </Router>
       </div>
     );
