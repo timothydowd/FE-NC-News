@@ -4,6 +4,7 @@ import guestAvatar from '../images/user.png'
 
 
 
+
 class UserInfo extends Component {
     
     constructor(props) {
@@ -20,16 +21,13 @@ class UserInfo extends Component {
     
     }
 
-    // state = {
-    //     LoginStatus: 'Please Log in',
-        
-    // }
 
     render() {
         return (
             
-            <div className="articleContainer">
-                <span>{this.state.LoginStatus}<img src={this.props.avatarUrl} alt={'../images/user.png'} width={50} height={50} /><button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
+            <div className="userInfo">
+           
+                <span>{this.state.LoginStatus}<img src={this.props.avatarUrl || guestAvatar} width={50} height={50} /><button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
 
                   
             </div>

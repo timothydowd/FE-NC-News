@@ -9,6 +9,8 @@ import Topics from './components/Topics'
 import SingleTopicAndArticles from './components/SingleTopicAndArticles'
 import Login from './components/Login'
 import UserInfo from './components/UserInfo'
+import Header from './components/Header' 
+
 
 class App extends Component {
 
@@ -50,7 +52,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>NC NEWS</h1> <UserInfo userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
+
+         <Header />
+         <UserInfo userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
         
           <Nav />
           <Router>
