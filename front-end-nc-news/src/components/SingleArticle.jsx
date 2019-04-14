@@ -4,7 +4,7 @@ import { Link, navigate } from '@reach/router'
 import Axios from 'axios';
 import AddCommentForm from '../components/AddCommentForm'
 import { deleteArticle, deleteComment, addVoteToComment } from '../components/apis'
-
+import loaderGif from '../images/roboloader.gif'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -18,7 +18,9 @@ class SingleArticle extends Component {
             commentsByArticleId: [],
             wasCommentAdded: false,
             wasCommentLiked: false,
-            like: 0,
+            currentLike: 0,
+            likeCount: 0,
+            loading: false
             
         }
         
@@ -36,13 +38,14 @@ class SingleArticle extends Component {
                 this.setState({ 
                     articleByArticleId: articleData, 
                     commentsByArticleId: commentsData,
+                    loading: false
                 })
                
             
             })
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevState) {
         
         if( this.state.wasCommentAdded || this.state.wasCommentDeleted ){
             Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
@@ -51,16 +54,19 @@ class SingleArticle extends Component {
                     articleByArticleId: articleData, 
                     commentsByArticleId: commentsData,
                     wasCommentAdded: false,
-                    wasCommentDeleted: false
+                    wasCommentDeleted: false,
+                    loading: false
                 })
             })
         }
-         else if( this.state.like !== 0 ) {
-             Promise.resolve(this.patchVoteByArticleId(this.state.like))
+         else if( this.state.currentLike !== 0 ) {
+             Promise.resolve(this.patchVoteByArticleId(this.state.currentLike))
              .then(updatedArticle => {
+                 console.log(updatedArticle)
                 this.setState({ 
                     articleByArticleId: updatedArticle, 
-                    like: 0 
+                    currentLike: 0,
+                    loading: false
                 })
                
              }) 
@@ -72,7 +78,8 @@ class SingleArticle extends Component {
                 this.setState({ 
                     articleByArticleId: articleData, 
                     commentsByArticleId: commentsData,
-                    wasCommentLiked: false
+                    wasCommentLiked: false,
+                    loading: false
                 })
               
             
@@ -106,8 +113,20 @@ class SingleArticle extends Component {
     
 
      handleLikeClick = (like) => {
+         
+         console.log('likes in state, on click of like',this.state.currentLike)
         
-        if(this.props.userLoggedIn) this.setState({like: like})
+            if(this.props.userLoggedIn && this.state.likeCount < 1  && like === 1) {
+                this.setState(prevState => ({currentLike: like, likeCount: prevState.likeCount + 1}))
+            }
+            if(this.props.userLoggedIn && this.state.likeCount > -1  && like === -1) {
+                this.setState(prevState => ({currentLike: like, likeCount: prevState.likeCount - 1}))
+            }
+        
+        // else if(like === -1){
+        //     if(this.props.userLoggedIn && this.state.currentLike !== -1) this.setState({like: like})
+        // }
+        // else this.setState({like: like})  
      }
 
      handleCommentLikeClick = (like, commentId) => {
@@ -134,6 +153,7 @@ class SingleArticle extends Component {
      }
 
      handleClickDeleteArticle() {
+        this.setState({loading: true})
          
          Promise.resolve(deleteArticle(this.state.articleByArticleId.article_id))
          .then(() => {
@@ -144,7 +164,7 @@ class SingleArticle extends Component {
      }
 
      handleClickDeleteComment(commentId) {
-         
+        this.setState({loading: true})
          
         Promise.resolve(deleteComment(commentId))
         .then(() => {
@@ -159,6 +179,10 @@ class SingleArticle extends Component {
   
     render() {
 
+        if(this.state.loading) return (
+            <img src={loaderGif} height='150px' width='150px'/>
+          )
+
         const { title, body, author, comment_count, created_at, topic, votes } = this.state.articleByArticleId
 
         return(
@@ -171,7 +195,7 @@ class SingleArticle extends Component {
                             <p> Comments: {comment_count} </p>
                             <p> Created: {created_at} </p>
                             <p> Topic: {topic} </p>
-                            <p> Likes: {votes+this.state.like} </p>
+                            <p> Likes: {votes+this.state.currentLike} </p>
                             <span role="img" aria-label='Close' onClick={() => this.handleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleLikeClick(-1)} >👎🏻</span> 
                             <div>
                                 <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>

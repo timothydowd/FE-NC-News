@@ -16,7 +16,6 @@ class Articles extends Component {
 
     this.state = {
       articles: [],
-      // sortByQuery: '',
       query: '',
       articleAdded: false,
       loading: true

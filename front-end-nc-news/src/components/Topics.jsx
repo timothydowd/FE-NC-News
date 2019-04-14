@@ -3,7 +3,7 @@ import '../App.css';
 import { Link } from '@reach/router'
 import { getTopics } from './apis'
 import AddTopicForm from './AddTopicForm'
-
+import loaderGif from '../images/roboloader.gif'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -13,12 +13,15 @@ class Topics extends Component {
    state = {
       topics: [],
       topicQuery: '',
-      wasTopicAdded: false
-      
+      wasTopicAdded: false,
+      loading: false
    }
     
    
   render() {
+    if(this.state.loading) return (
+      <img src={loaderGif} height='150px' width='150px'/>
+    )
     return (
         <div>
             <h2>Topics</h2>
@@ -28,7 +31,7 @@ class Topics extends Component {
                   this.state.topics.map(topic => {
                       return (
                         <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug}>
-                           <div key={topic.slug} className='singleCommentContainer' >
+                           <div key={topic.slug} className='articleContainer' >
                               <p> Topic: {topic.slug} </p>
                               <p> Description: {topic.description} </p>
                           </div>
@@ -42,7 +45,7 @@ class Topics extends Component {
   }
 
   setTopicAddedToTrue = () => {
-    this.setState({wasTopicAdded: true})
+    this.setState({wasTopicAdded: true, loading: true})
 }
 
   componentDidMount() {
@@ -51,7 +54,7 @@ class Topics extends Component {
          .then(topicData => {
            this.setState({ 
              topics: topicData,
-            
+             loading: false
              
            })
          })
@@ -65,7 +68,8 @@ class Topics extends Component {
            this.setState({ 
              topics: topicData,
              wasTopicAdded: false,
-             topicQuery: prevState.topicQuery
+             topicQuery: prevState.topicQuery,
+             loading: false
            })
          })
     }
