@@ -86,7 +86,7 @@ import Axios from 'axios';
   })
 }
 
-export const addVoteToComment = (like, commentId) => {
+export const patchVoteByCommentId = (like, commentId) => {
   return Axios.patch(
      `https://ncnewstimdowd.herokuapp.com/api/comments/${commentId}`,
      {inc_votes: like}
@@ -98,9 +98,33 @@ export const addVoteToComment = (like, commentId) => {
    })
 }
 
+export const patchVoteByArticleId = (like, articleId) => {
+  return Axios.patch(
+     `https://ncnewstimdowd.herokuapp.com/api/articles/${articleId}`,
+     {inc_votes: like}
+   )
+   .then((articleData) => {
+       return articleData.data.updatedArticle
+        
+   })
+}
 
-  
+export const getArticleById = (articleId) => {
+  return Axios.get(
+    `https://ncnewstimdowd.herokuapp.com/api/articles/${articleId}`
+  )
+  .then(articleData => {
+      return articleData.data.article
+  })
+}
 
+export const getCommentsByArticleId = (articleId) => {
+  return Axios.get(
+     `https://ncnewstimdowd.herokuapp.com/api/articles/${articleId}/comments`
+  )
+  .then(commentsData => {
+       return commentsData.data.commentsByArticleId
+  })
+}
 
-
-export default {  getArticles, getTopics, postTopic, deleteArticle, deleteComment, addVoteToComment }
+export default {  getArticles, getTopics, postTopic, deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId }

@@ -52,7 +52,7 @@ class AddArticleForm extends Component {
     return (
       <form className="articleContainer" onSubmit={this.handleFormSubmit}>
         <div className="form-group">
-            <textarea onChange={this.handleChangeTitle} placeholder='Title' rows='1' cols='45'/>
+            <input onChange={this.handleChangeTitle} placeholder='Title' size='45'/>
             
             <textarea onChange={this.handleChangeBody} placeholder='Your content....' rows='5' cols='45'/>
             <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Article</button>

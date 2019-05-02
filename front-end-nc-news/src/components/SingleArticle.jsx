@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Link, navigate } from '@reach/router'
-import Axios from 'axios';
 import AddCommentForm from '../components/AddCommentForm'
-import { deleteArticle, deleteComment, addVoteToComment } from '../components/apis'
+import { deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 
 //https://ncnewstimdowd.herokuapp.com/api
@@ -31,9 +30,8 @@ class SingleArticle extends Component {
       }
 
     
-
     componentDidMount() {
-        Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
+        Promise.all([getArticleById(this.props.article_id), getCommentsByArticleId(this.props.article_id)])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
                     articleByArticleId: articleData, 
@@ -48,7 +46,7 @@ class SingleArticle extends Component {
     componentDidUpdate(prevState) {
         
         if( this.state.wasCommentAdded || this.state.wasCommentDeleted ){
-            Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
+            Promise.all([getArticleById(this.props.article_id), getCommentsByArticleId(this.props.article_id)])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
                     articleByArticleId: articleData, 
@@ -60,7 +58,7 @@ class SingleArticle extends Component {
             })
         }
          else if( this.state.currentLike !== 0 ) {
-             Promise.resolve(this.patchVoteByArticleId(this.state.currentLike))
+             Promise.resolve(patchVoteByArticleId(this.state.currentLike, this.props.article_id))
              .then(updatedArticle => {
                  console.log(updatedArticle)
                 this.setState({ 
@@ -73,7 +71,7 @@ class SingleArticle extends Component {
          }
 
          else if( this.state.wasCommentLiked){
-            Promise.all([this.getArticleById(), this.getCommentsByArticleId()])
+            Promise.all([getArticleById(this.props.article_id), getCommentsByArticleId(this.props.article_id)])
             .then(([articleData, commentsData]) =>{
                 this.setState({ 
                     articleByArticleId: articleData, 
@@ -81,99 +79,48 @@ class SingleArticle extends Component {
                     wasCommentLiked: false,
                     loading: false
                 })
-              
-            
             })
          }
     }
 
-    getArticleById = () => {
-        return Axios.get(
-          `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}`
-        )
-        .then(articleData => {
-            return articleData.data.article
-        })
-      }
-
+  
     handleAddCommentClick = () => {
         this.setState({wasCommentAdded: true})
     }
    
-
-    getCommentsByArticleId = () => {
-        return Axios.get(
-           `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`
-        )
-        .then(commentsData => {
-             return commentsData.data.commentsByArticleId
-        })
-    }
-   
-    
-
-     handleLikeClick = (like) => {
-         
-         console.log('likes in state, on click of like',this.state.currentLike)
-        
+    handleArticleLikeClick = (like) => {
             if(this.props.userLoggedIn && this.state.likeCount < 1  && like === 1) {
                 this.setState(prevState => ({currentLike: like, likeCount: prevState.likeCount + 1}))
             }
             if(this.props.userLoggedIn && this.state.likeCount > -1  && like === -1) {
                 this.setState(prevState => ({currentLike: like, likeCount: prevState.likeCount - 1}))
             }
-        
-        // else if(like === -1){
-        //     if(this.props.userLoggedIn && this.state.currentLike !== -1) this.setState({like: like})
-        // }
-        // else this.setState({like: like})  
-     }
+    }
 
-     handleCommentLikeClick = (like, commentId) => {
-         
-        
+    handleCommentLikeClick = (like, commentId) => {
         if(this.props.userLoggedIn){
-            Promise.resolve(addVoteToComment(like, commentId))
-            .then((updatedComment) => {
+            Promise.resolve(patchVoteByCommentId(like, commentId))
+            .then(() => {
                 this.setState({wasCommentLiked: true})
             })
         }
-     }
+    }
 
 
-     patchVoteByArticleId = (like) => {
-         return Axios.patch(
-            `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}`,
-            {inc_votes: like}
-          )
-          .then((articleData) => {
-              return articleData.data.updatedArticle
-               
-          })
-     }
-
-     handleClickDeleteArticle() {
+    handleClickDeleteArticle() {
         this.setState({loading: true})
-         
          Promise.resolve(deleteArticle(this.state.articleByArticleId.article_id))
          .then(() => {
              navigate('/articles')
          })
-         
-
-     }
+    }
 
      handleClickDeleteComment(commentId) {
         this.setState({loading: true})
-         
         Promise.resolve(deleteComment(commentId))
         .then(() => {
-
-            this.setState({wasCommentDeleted: true})
-            
+            this.setState({wasCommentDeleted: true})  
         })
-        
-
     }
 
   
@@ -196,7 +143,7 @@ class SingleArticle extends Component {
                             <p> Created: {created_at} </p>
                             <p> Topic: {topic} </p>
                             <p> Likes: {votes+this.state.currentLike} </p>
-                            <span role="img" aria-label='Close' onClick={() => this.handleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleLikeClick(-1)} >👎🏻</span> 
+                            <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(-1)} >👎🏻</span> 
                             <div>
                                 <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>
                             </div>

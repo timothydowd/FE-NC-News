@@ -44,10 +44,10 @@ class Login extends Component {
         <h1>Log in</h1>
         <form className="articleContainer" onSubmit={this.handleFormSubmit}>
             <div className="form-group">
-                <textarea onChange={this.handleChangeUsername} placeholder='Username' rows='1' cols='45'/>
+                <input onChange={this.handleChangeUsername} placeholder='Username' size='45'/>
                 {/* <textarea onChange={this.handleChangeName} placeholder='Name' rows='1' cols='45'/>
                 <textarea onChange={this.handleChangeAvatarUrl} placeholder='Avatar Url' rows='1' cols='45'/> */}
-                 <textarea  placeholder='Password' rows='1' cols='45'/>
+                 <input  placeholder='Password' size='45'/>
                 <button onSubmit={this.handleFormSubmit}>Login</button>
             </div>
       

@@ -45,7 +45,7 @@ class AddTopicForm extends Component {
     return (
       <form className="topicContainer" onSubmit={this.handleFormSubmit}>
         <div className="form-group">
-            <textarea onChange={this.handleChangeTopic} placeholder='Name your topic....' rows='1' cols='45'/>
+            <input onChange={this.handleChangeTopic} placeholder='Name your topic....' size='35'/>
             <textarea onChange={this.handleChangeDescription} placeholder='Add a description....' rows='5' cols='45'/>
             <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Topic</button>
             </div>
