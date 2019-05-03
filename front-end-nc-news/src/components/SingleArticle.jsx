@@ -4,6 +4,7 @@ import { Link, navigate } from '@reach/router'
 import AddCommentForm from '../components/AddCommentForm'
 import { deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
+import SingleComment from './SingleComment'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -97,14 +98,7 @@ class SingleArticle extends Component {
             }
     }
 
-    handleCommentLikeClick = (like, commentId) => {
-        if(this.props.userLoggedIn){
-            Promise.resolve(patchVoteByCommentId(like, commentId))
-            .then(() => {
-                this.setState({wasCommentLiked: true})
-            })
-        }
-    }
+    
 
 
     handleClickDeleteArticle() {
@@ -154,22 +148,31 @@ class SingleArticle extends Component {
                             <AddCommentForm article_id={this.props.article_id} handleAddCommentClick={this.handleAddCommentClick} userLoggedIn={this.props.userLoggedIn} />
 
                             <div>
+                                {/* {
+                                    this.state.commentsByArticleId.map(comment => {
+                                        return (
+                                            <div key={comment.comment_id} className='singleCommentContainer' >
+                                                <p> User: {comment.author} </p>
+                                                <p> Comment: {comment.body} </p>
+                                                <p> Created: {comment.created_at} </p>
+                                                <p> Likes: {comment.votes} </p>
+                                                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, comment.comment_id)} >👎🏻</span>
+                                                <div>
+                                                    <button disabled={this.props.userLoggedIn !== comment.author } onClick={() => this.handleClickDeleteComment(comment.comment_id)} >Delete Comment</button>
+                                                </div>
+                                            </div>
+                                        )
+                                    })   
+                                } */}
+                                
                                 {
                                     this.state.commentsByArticleId.map(comment => {
                                         return (
-                                                <div key={comment.comment_id} className='singleCommentContainer' >
-                                                    <p> User: {comment.author} </p>
-                                                    <p> Comment: {comment.body} </p>
-                                                    <p> Created: {comment.created_at} </p>
-                                                    <p> Likes: {comment.votes} </p>
-                                                    <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, comment.comment_id)} >👎🏻</span>
-                                                    <div>
-                                                        <button disabled={this.props.userLoggedIn !== comment.author } onClick={() => this.handleClickDeleteComment(comment.comment_id)} >Delete Comment</button>
-                                                     </div>
-                                                </div>
+                                            <SingleComment handleClickDeleteComment={this.handleClickDeleteComment} key={comment.comment_id} userLoggedIn={this.props.userLoggedIn} comment={comment} />
                                         )
                                     })   
                                 }
+                            
                             </div>
                         </div>
                 
