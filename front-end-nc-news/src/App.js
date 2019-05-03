@@ -34,12 +34,7 @@ class App extends Component {
     this.setState({user: null})
   }
 
-  componentDidUpdate(){
-    if(this.state.userLoggedIn !== null){
-      
-
-    }
-  }
+ 
 
   setUserLogin(username, avatarUrl){
     

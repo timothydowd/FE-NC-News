@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { postArticle, getTopics } from "./apis";
+import { postArticle } from "./apis";
 
 class AddArticleForm extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ class AddArticleForm extends Component {
         title: "",
         body: "",
         
-      },
-      topics: []
+      }
+    
       
     };
     
@@ -42,9 +42,7 @@ class AddArticleForm extends Component {
     
   }
 
-  componentDidMount(){
-    
-  }
+  
 
 
 
