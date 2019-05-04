@@ -9,9 +9,7 @@ class SingleTopicAndArticles extends Component {
 
   
 
-    state = {
-      
-     }
+
      
   
     render() {
@@ -25,10 +23,7 @@ class SingleTopicAndArticles extends Component {
 
     }
 
-    componentDidMount(){
-        
-       
-    }
+  
 }
 
 

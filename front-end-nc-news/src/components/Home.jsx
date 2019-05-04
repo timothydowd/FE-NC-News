@@ -6,22 +6,20 @@ import { Link } from '@reach/router'
 
 
 
-class Home extends Component {
+const Home = () => {
 
-  state = {
-    inHomePage: true
-  }
+  
 
-  render() {
+ 
     return (
       <div className="App">
         <h1>Home page</h1>
        
-        <Articles inHomePage = {this.state.inHomePage} />
+        <Articles inHomePage={true} />
          
       </div>
     );
-  }
+  
 
 
 }
