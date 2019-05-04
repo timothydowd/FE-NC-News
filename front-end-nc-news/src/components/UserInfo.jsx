@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import guestAvatar from '../images/user.png'
-import UserContent from '../components/UserContent'
+
 import { Link } from '@reach/router'
 
 

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import { Router } from '@reach/router'
 import Nav from './components/Nav'
-import Articles from './components/Articles'
+
 import SingleArticle from './components/SingleArticle'
 import Home from './components/Home'
 import Topics from './components/Topics'
 import SingleTopicAndArticles from './components/SingleTopicAndArticles'
 import Login from './components/Login'
-import UserInfo from './components/UserInfo'
+
 import Header from './components/Header' 
 import UserContent from './components/UserContent'
 

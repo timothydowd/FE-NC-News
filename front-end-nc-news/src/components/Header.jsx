@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
 import ncnewsLogo from '../images/ncnews2.jpg'

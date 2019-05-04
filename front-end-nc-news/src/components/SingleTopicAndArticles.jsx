@@ -7,11 +7,6 @@ import Articles from './Articles'
 
 class SingleTopicAndArticles extends Component {
 
-  
-
-
-     
-  
     render() {
     
         return (
@@ -21,12 +16,8 @@ class SingleTopicAndArticles extends Component {
             </div>
         )
 
-    }
-
-  
+    }  
 }
-
-
 
 export default SingleTopicAndArticles;
 

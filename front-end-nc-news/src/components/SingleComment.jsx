@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Link, navigate } from '@reach/router'
-import AddCommentForm from '../components/AddCommentForm'
-import { deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId } from '../components/apis'
+
+
+import {  patchVoteByCommentId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 
 //https://ncnewstimdowd.herokuapp.com/api

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 import Articles from '../components/Articles'
-import {getArticles} from '../components/apis'
-import { Link } from '@reach/router'
+
 
 
 
