@@ -54,17 +54,17 @@ class Articles extends Component {
                         //     </div>
                         // </Link>
                         <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
-                        <Card className='Card' >
+                          <Card className='Card' >
                               <Card.Header className='cardHeader'><Card.Title>{article.title}</Card.Title></Card.Header>
                               <Card.Subtitle className="articleAuthor">by {article.author}</Card.Subtitle>
                                 <Card.Body>
-                                  <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
+                                  {/* <Link to ={`/articles/${article.article_id}`} key={article.article_id} > */}
                                     <Card.Text>in {article.topic} {`${article.body.substring(0,400)}......`} </Card.Text>
-                                  </Link>
+                                  {/* </Link> */}
                                 </Card.Body>
                               <Card.Footer>Created: {article.created_at} Comments: <i class="glyphicon glyphicon-thumbs-up"></i>{article.comment_count} Likes: {article.votes}</Card.Footer>
                           </Card>
-                          </Link>
+                        </Link>
                         
                     )
                 })   

@@ -107,3 +107,12 @@ body {
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
+
+.cardHeader {
+  margin-top: 0;
+  padding: 10rem; 
+}
+
+.articleAuthor {
+  padding: 15px
+}
