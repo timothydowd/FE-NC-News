@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Router } from '@reach/router'
-import Nav from './components/Nav'
+import Navi from './components/Nav'
 
 import SingleArticle from './components/SingleArticle'
 import Home from './components/Home'
@@ -55,7 +55,7 @@ class App extends Component {
          <Header />
          
         
-          <Nav userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
+          <Navi userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>
           <Router>
             
             <Home path='/' />

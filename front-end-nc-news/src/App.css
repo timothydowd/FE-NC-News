@@ -35,9 +35,11 @@ body {
 
 .userInfo {
   float: right;
+  position: absolute;
+  right: 0px;
   color: #f1f1f1;
   text-align: right;
-  padding: 12px;
+  padding: 4px 15px;
   text-decoration: none;
   font-size: 18px; 
   line-height: 25px;
