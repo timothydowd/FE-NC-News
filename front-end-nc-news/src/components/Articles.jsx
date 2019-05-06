@@ -53,7 +53,7 @@ class Articles extends Component {
                         //         <p> Likes: {article.votes} </p>
                         //     </div>
                         // </Link>
-
+                        <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
                         <Card className='Card' >
                               <Card.Header className='cardHeader'><Card.Title>{article.title}</Card.Title></Card.Header>
                               <Card.Subtitle className="articleAuthor">by {article.author}</Card.Subtitle>
@@ -64,7 +64,7 @@ class Articles extends Component {
                                 </Card.Body>
                               <Card.Footer>Created: {article.created_at} Comments: <i class="glyphicon glyphicon-thumbs-up"></i>{article.comment_count} Likes: {article.votes}</Card.Footer>
                           </Card>
-
+                          </Link>
                         
                     )
                 })   
