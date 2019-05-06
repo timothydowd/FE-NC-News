@@ -100,3 +100,8 @@ body {
   margin-right: 10px;
   margin-left: 10px;
 }
+
+.Card {
+  width: 40rem;
+  margin: 0 auto;
+}

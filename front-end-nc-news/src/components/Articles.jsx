@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 import { getArticles }  from './apis'
 import AddArticleForm from './AddArticleForm'
 import loaderGif from '../images/roboloader.gif'
+import { Card }from 'react-bootstrap'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -41,17 +42,30 @@ class Articles extends Component {
             {
                 this.state.articles.map(article => {
                     return (
-                        <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
-                            <div className='articleContainer' >
-                                <p> Title: {article.title} </p>
-                                <p> Author: {article.author} </p>
-                                <p> Body: {`${article.body.substring(0,100)}......`} </p>
-                                <p> Comments: {article.comment_count} </p>
-                                <p> Created: {article.created_at} </p>
-                                <p> Topic: {article.topic} </p>
-                                <p> Likes: {article.votes} </p>
-                            </div>
-                        </Link>
+                        // <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
+                        //     <div className='articleContainer' >
+                        //         <p> Title: {article.title} </p>
+                        //         <p> Author: {article.author} </p>
+                        //         <p> Body: {`${article.body.substring(0,100)}......`} </p>
+                        //         <p> Comments: {article.comment_count} </p>
+                        //         <p> Created: {article.created_at} </p>
+                        //         <p> Topic: {article.topic} </p>
+                        //         <p> Likes: {article.votes} </p>
+                        //     </div>
+                        // </Link>
+
+                        <Card className='Card' >
+                              <Card.Header className='cardHeader'><Card.Title>{article.title}</Card.Title></Card.Header>
+                              <Card.Subtitle className="articleAuthor">by {article.author}</Card.Subtitle>
+                                <Card.Body>
+                                  <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
+                                    <Card.Text>in {article.topic} {`${article.body.substring(0,400)}......`} </Card.Text>
+                                  </Link>
+                                </Card.Body>
+                              <Card.Footer>Created: {article.created_at} Comments: <i class="glyphicon glyphicon-thumbs-up"></i>{article.comment_count} Likes: {article.votes}</Card.Footer>
+                          </Card>
+
+                        
                     )
                 })   
             }
