@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from 'axios';
+import { Card, Form, Button } from 'react-bootstrap'
 
 class AddCommentForm extends Component {
   constructor(props) {
@@ -39,14 +40,33 @@ class AddCommentForm extends Component {
 
   render() {
     return (
-      <form className="commentContainer" onSubmit={this.handleFormSubmit}>
-        <div className="form-group">
+      // <form className="commentContainer" onSubmit={this.handleFormSubmit}>
+      //   <div className="form-group">
             
-            <textarea onChange={this.handleChange} placeholder='Add your thoughts....' rows='10' cols='45'/>
-            <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Comment</button>
-            </div>
+      //       <textarea onChange={this.handleChange} placeholder='Add your thoughts....' rows='10' cols='45'/>
+      //       <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Comment</button>
+      //       </div>
       
-      </form>
+      // </form>
+
+      <Card className='Card' >
+      <Card.Header>
+        Add a Comment?
+      </Card.Header>
+          <Form className='FormInput' onSubmit={this.handleFormSubmit}>
+            <Form.Group controlId="formTopic">
+              
+              <textarea className="form-control" id="submitArticleTextArea" rows="7" placeholder="Add your thoughts..." onChange={this.handleChange}></textarea>
+             
+            </Form.Group>
+
+
+            <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
+              Add Comment
+            </Button>
+          </Form>                   
+    </Card>
+
     );
   }
 }
