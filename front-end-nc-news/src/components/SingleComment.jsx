@@ -5,6 +5,8 @@ import '../App.css';
 import {  patchVoteByCommentId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 import { Card, Button } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp, faThumbsDown, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -84,15 +86,14 @@ class SingleComment extends Component {
             <Card className='Card' key={this.props.comment.comment_id} >
                 <Card.Header className='cardHeader'>
                     <Card.Title className='cardTitle'> {this.props.comment.author} says...</Card.Title>
-                </Card.Header>
-                              
-                <Card.Body>
-                                  
-                    <Card.Text>{this.props.comment.body}</Card.Text>
-                                 
+                </Card.Header>            
+                <Card.Body>                
+                    <Card.Text>{this.props.comment.body}</Card.Text>               
                 </Card.Body>
-                <Card.Footer>Created: {this.props.comment.created_at}  Likes: {this.props.comment.votes + this.state.likeCount}
-                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} >👎🏻</span> 
+                <Card.Footer>Created: {this.props.comment.created_at}  
+                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} > <FontAwesomeIcon icon={faThumbsUp} /> </span>
+                <span> {this.props.comment.votes + this.state.likeCount}  </span>
+                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} ><FontAwesomeIcon icon={faThumbsDown} /> </span> 
                     <Button disabled={this.props.userLoggedIn !== this.props.comment.author } onClick={() => this.props.handleClickDeleteComment(this.props.comment.comment_id)} >Delete Comment</Button>
                 </Card.Footer>
             </Card>
