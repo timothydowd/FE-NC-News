@@ -4,6 +4,7 @@ import { Link } from '@reach/router'
 import { getTopics } from './apis'
 import AddTopicForm from './AddTopicForm'
 import loaderGif from '../images/roboloader.gif'
+import { Card }from 'react-bootstrap'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -30,12 +31,27 @@ class Topics extends Component {
                 {
                   this.state.topics.map(topic => {
                       return (
-                        <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug}>
-                           <div key={topic.slug} className='articleContainer' >
-                              <p> Topic: {topic.slug} </p>
-                              <p> Description: {topic.description} </p>
-                          </div>
-                        </Link>     
+                        // <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug}>
+                        //    <div key={topic.slug} className='articleContainer' >
+                        //       <p> Topic: {topic.slug} </p>
+                        //       <p> Description: {topic.description} </p>
+                        //   </div>
+                        // </Link>     
+
+                        <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug} >
+                          <Card className='Card' >
+                              <Card.Header className='cardHeader'>
+                                <Card.Title>{topic.slug}</Card.Title>
+                              </Card.Header>
+                              
+                                <Card.Body>
+                                  {/* <Link to ={`/articles/${article.article_id}`} key={article.article_id} > */}
+                                    <Card.Text>{topic.description} </Card.Text>
+                                  {/* </Link> */}
+                                </Card.Body>
+                              
+                          </Card>
+                        </Link>
                       )
                   })   
                 }

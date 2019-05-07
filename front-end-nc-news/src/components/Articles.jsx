@@ -55,8 +55,12 @@ class Articles extends Component {
                         // </Link>
                         <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
                           <Card className='Card' >
-                              <Card.Header className='cardHeader'><Card.Title>{article.title}</Card.Title></Card.Header>
-                              <Card.Subtitle className="articleAuthor">by {article.author}</Card.Subtitle>
+                              <Card.Header className='cardHeader'>
+                                <Card.Title className='cardTitle'> {article.title}</Card.Title>
+                                <Card.Text>in {article.topic}</Card.Text>
+                                <Card.Subtitle className="articleAuthor">by {article.author}</Card.Subtitle>
+                              </Card.Header>
+                              
                                 <Card.Body>
                                   {/* <Link to ={`/articles/${article.article_id}`} key={article.article_id} > */}
                                     <Card.Text>in {article.topic} {`${article.body.substring(0,400)}......`} </Card.Text>
