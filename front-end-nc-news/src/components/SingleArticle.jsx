@@ -6,6 +6,8 @@ import { deleteArticle, deleteComment, patchVoteByArticleId, getArticleById, get
 import loaderGif from '../images/roboloader.gif'
 import SingleComment from './SingleComment'
 import { Card } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp, faThumbsDown, faComment } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -156,8 +158,10 @@ class SingleArticle extends Component {
                                     <Card.Text>in {topic} {body} </Card.Text>
                                  
                                 </Card.Body>
-                              <Card.Footer>Created: {created_at} Comments: <i className="glyphicon glyphicon-thumbs-up"></i>{comment_count} Likes: {votes+this.state.currentLike}
-                              <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(-1)} >👎🏻</span> 
+                              <Card.Footer>Created: {created_at} &nbsp;&nbsp; <FontAwesomeIcon icon={faComment} /> {comment_count} 
+                              <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(1)} > &nbsp;&nbsp; <FontAwesomeIcon icon={faThumbsUp} /> </span>
+                              <span>  {votes+this.state.currentLike}  </span>
+                              <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(-1)} > <FontAwesomeIcon icon={faThumbsDown} /> &nbsp;&nbsp; </span> 
                                 
                                     <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>
                                 
