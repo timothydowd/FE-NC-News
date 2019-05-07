@@ -57,18 +57,18 @@ class AddTopicForm extends Component {
         <Card.Header>
           Add a New Topic?
         </Card.Header>
-            <Form className='FormInput'>
+            <Form className='FormInput' onSubmit={this.handleFormSubmit}>
               <Form.Group controlId="formTopic">
                 {/* <Form.Label>Topic</Form.Label> */}
-                <Form.Control type="email" placeholder="Enter a topic..." />
+                <Form.Control type="input" placeholder="Enter a topic..." onChange={this.handleChangeTopic} />
               </Form.Group>
 
               <Form.Group controlId="formTopicDescription">
                 {/* <Form.Label>Description</Form.Label> */}
-                <Form.Control type="password" placeholder="Enter a brief description of your topic here..." />
+                <Form.Control type="input" placeholder="Enter a brief description of your topic here..." onChange={this.handleChangeDescription} />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
                 Add Topic
               </Button>
             </Form>                   
