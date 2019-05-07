@@ -4,6 +4,7 @@ import '../App.css';
 
 import {  patchVoteByCommentId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
+import { Card, Button } from 'react-bootstrap'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -66,19 +67,35 @@ class SingleComment extends Component {
           )
 
         return(
-            <div>
+            // <div>
                    
-                <div key={this.props.comment.comment_id} className='singleCommentContainer' >
-                    <p> User: {this.props.comment.author} </p>
-                    <p> Comment: {this.props.comment.body} </p>
-                    <p> Created: {this.props.comment.created_at} </p>
-                    <p> Likes: {this.props.comment.votes + this.state.likeCount} </p>
-                    <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} >👎🏻</span>
-                    <div>
-                        <button disabled={this.props.userLoggedIn !== this.props.comment.author } onClick={() => this.props.handleClickDeleteComment(this.props.comment.comment_id)} >Delete Comment</button>
-                    </div>
-                </div>
-            </div>
+            //     <div key={this.props.comment.comment_id} className='singleCommentContainer' >
+            //         <p> User: {this.props.comment.author} </p>
+            //         <p> Comment: {this.props.comment.body} </p>
+            //         <p> Created: {this.props.comment.created_at} </p>
+            //         <p> Likes: {this.props.comment.votes + this.state.likeCount} </p>
+            //         <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} >👎🏻</span>
+            //         <div>
+            //             <button disabled={this.props.userLoggedIn !== this.props.comment.author } onClick={() => this.props.handleClickDeleteComment(this.props.comment.comment_id)} >Delete Comment</button>
+            //         </div>
+            //     </div>
+            // </div>
+
+            <Card className='Card' key={this.props.comment.comment_id} >
+                <Card.Header className='cardHeader'>
+                    <Card.Title className='cardTitle'> {this.props.comment.author} says...</Card.Title>
+                </Card.Header>
+                              
+                <Card.Body>
+                                  
+                    <Card.Text>{this.props.comment.body}</Card.Text>
+                                 
+                </Card.Body>
+                <Card.Footer>Created: {this.props.comment.created_at}  Likes: {this.props.comment.votes + this.state.likeCount}
+                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} >👎🏻</span> 
+                    <Button disabled={this.props.userLoggedIn !== this.props.comment.author } onClick={() => this.props.handleClickDeleteComment(this.props.comment.comment_id)} >Delete Comment</Button>
+                </Card.Footer>
+            </Card>
         )
     }
 }
