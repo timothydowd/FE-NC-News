@@ -66,7 +66,7 @@ class Articles extends Component {
                                     <Card.Text>in {article.topic} {`${article.body.substring(0,400)}......`} </Card.Text>
                                   {/* </Link> */}
                                 </Card.Body>
-                              <Card.Footer>Created: {article.created_at} Comments: <i class="glyphicon glyphicon-thumbs-up"></i>{article.comment_count} Likes: {article.votes}</Card.Footer>
+                              <Card.Footer>Created: {article.created_at} Comments: <i className="glyphicon glyphicon-thumbs-up"></i>{article.comment_count} Likes: {article.votes}</Card.Footer>
                           </Card>
                         </Link>
                         

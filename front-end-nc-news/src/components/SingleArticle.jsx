@@ -5,6 +5,7 @@ import AddCommentForm from '../components/AddCommentForm'
 import { deleteArticle, deleteComment, patchVoteByArticleId, getArticleById, getCommentsByArticleId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 import SingleComment from './SingleComment'
+import { Card } from 'react-bootstrap'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -129,7 +130,7 @@ class SingleArticle extends Component {
         return(
             <div>
                     <h1>single article</h1>
-                        <div className='articleContainer'>
+                        {/* <div className='articleContainer'>
                             <p> Title: {title} </p>
                             <p> Author: {author} </p>
                             <p> Body: {body} </p>
@@ -141,7 +142,29 @@ class SingleArticle extends Component {
                             <div>
                                 <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>
                             </div>
-                        </div>
+                        </div> */}
+
+                            <Card className='Card' >
+                              <Card.Header className='cardHeader'>
+                                <Card.Title className='cardTitle'> {title}</Card.Title>
+                                <Card.Text>in {topic}</Card.Text>
+                                <Card.Subtitle className="articleAuthor">by {author}</Card.Subtitle>
+                              </Card.Header>
+                              
+                                <Card.Body>
+                                  
+                                    <Card.Text>in {topic} {body} </Card.Text>
+                                 
+                                </Card.Body>
+                              <Card.Footer>Created: {created_at} Comments: <i className="glyphicon glyphicon-thumbs-up"></i>{comment_count} Likes: {votes+this.state.currentLike}
+                              <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(-1)} >👎🏻</span> 
+                                
+                                    <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>
+                                
+                              </Card.Footer>
+                              
+                            </Card>
+
                         <div className='commentsContainer'>
                             <h3>comments</h3>
 

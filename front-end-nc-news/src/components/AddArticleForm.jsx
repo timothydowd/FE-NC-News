@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { postArticle } from "./apis";
+import { Card, Form, Button } from 'react-bootstrap'
 
 class AddArticleForm extends Component {
   constructor(props) {
@@ -48,15 +49,38 @@ class AddArticleForm extends Component {
 
   render() {
     return (
-      <form className="articleContainer" onSubmit={this.handleFormSubmit}>
-        <div className="form-group">
-            <input onChange={this.handleChangeTitle} placeholder='Title' size='45'/>
+      // <form className="articleContainer" onSubmit={this.handleFormSubmit}>
+      //   <div className="form-group">
+      //       <input onChange={this.handleChangeTitle} placeholder='Title' size='45'/>
             
-            <textarea onChange={this.handleChangeBody} placeholder='Your content....' rows='5' cols='45'/>
-            <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Article</button>
-            </div>
+      //       <textarea onChange={this.handleChangeBody} placeholder='Your content....' rows='5' cols='45'/>
+      //       <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Article</button>
+      //       </div>
       
-      </form>
+      // </form>
+
+
+      <Card className='Card' >
+      <Card.Header>
+        Add a New Article?
+      </Card.Header>
+          <Form className='FormInput' onSubmit={this.handleFormSubmit}>
+            <Form.Group controlId="formArticleTitle">
+              {/* <Form.Label>Topic</Form.Label> */}
+              <Form.Control type="input" placeholder="Enter a title..." onChange={this.handleChangeTitle} />
+            </Form.Group>
+
+            <Form.Group controlId="formArticleContent">
+              {/* <Form.Label>Description</Form.Label> */}
+              {/* <Form.Control type="input" placeholder="Write your article here..." onChange={this.handleChangeBody} /> */}
+              <textarea className="form-control" id="submitArticleTextArea" rows="7" placeholder="Write your article here..." onChange={this.handleChangeBody}></textarea>
+            </Form.Group>
+
+            <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
+              Add Article
+            </Button>
+          </Form>                   
+      </Card>
     );
   }
 }
