@@ -6,7 +6,7 @@ import AddArticleForm from './AddArticleForm'
 import loaderGif from '../images/roboloader.gif'
 import { Card }from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp, faThumbsDown, faComment, faHeart, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faThumbsDown, faComment, faHeart, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -55,7 +55,7 @@ class Articles extends Component {
                               
                                 <Card.Body>
                                   {/* <Link to ={`/articles/${article.article_id}`} key={article.article_id} > */}
-                                    <Card.Text>{`${article.body.substring(0,400)}......`} </Card.Text>
+                                    <Card.Text> <FontAwesomeIcon icon={faQuoteLeft} /> &nbsp; {`${article.body.substring(0,400)}......`} &nbsp; <FontAwesomeIcon icon={faQuoteRight} /> </Card.Text>
                                   {/* </Link> */}
                                 </Card.Body>
                                 

@@ -6,7 +6,7 @@ import {  patchVoteByCommentId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 import { Card, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faThumbsDown, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -88,7 +88,7 @@ class SingleComment extends Component {
                     <Card.Title className='cardTitle'> {this.props.comment.author} says...</Card.Title>
                 </Card.Header>            
                 <Card.Body>                
-                    <Card.Text>{this.props.comment.body}</Card.Text>               
+                    <Card.Text> <FontAwesomeIcon icon={faQuoteLeft} /> &nbsp; {this.props.comment.body} &nbsp; <FontAwesomeIcon icon={faQuoteRight} />  </Card.Text>               
                 </Card.Body>
                 <Card.Footer>Created: {this.props.comment.created_at}  
                 <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} > <FontAwesomeIcon icon={faThumbsUp} /> </span>
