@@ -7,7 +7,7 @@ import loaderGif from '../images/roboloader.gif'
 import SingleComment from './SingleComment'
 import { Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp, faThumbsDown, faComment } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faThumbsDown, faComment, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -148,7 +148,7 @@ class SingleArticle extends Component {
 
                             <Card className='Card' >
                               <Card.Header className='cardHeader'>
-                                <Card.Title className='cardTitle'> {title}</Card.Title>
+                                <Card.Title className='cardTitle'> <FontAwesomeIcon icon={faNewspaper} /> &nbsp; {title}</Card.Title>
                                 <Card.Text>in {topic}</Card.Text>
                                 <Card.Subtitle className="articleAuthor">by {author}</Card.Subtitle>
                               </Card.Header>
