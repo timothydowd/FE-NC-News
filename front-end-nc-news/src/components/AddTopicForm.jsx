@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { postTopic } from "./apis";
 import { Form, Button, Card } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faPen  } from '@fortawesome/free-solid-svg-icons'
 
 class AddTopicForm extends Component {
   constructor(props) {
@@ -55,12 +57,12 @@ class AddTopicForm extends Component {
 
       <Card className='Card' >
         <Card.Header>
-          Add a New Topic?
+        <FontAwesomeIcon icon={faPen} /> &nbsp; Add a New Topic? 
         </Card.Header>
             <Form className='FormInput' onSubmit={this.handleFormSubmit}>
               <Form.Group controlId="formTopic">
                 {/* <Form.Label>Topic</Form.Label> */}
-                <Form.Control type="input" placeholder="Enter a topic..." onChange={this.handleChangeTopic} />
+                <Form.Control type="input" placeholder="Enter a topic name..." onChange={this.handleChangeTopic} />
               </Form.Group>
 
               <Form.Group controlId="formTopicDescription">

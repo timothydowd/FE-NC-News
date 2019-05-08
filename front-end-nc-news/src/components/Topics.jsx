@@ -5,6 +5,8 @@ import { getTopics } from './apis'
 import AddTopicForm from './AddTopicForm'
 import loaderGif from '../images/roboloader.gif'
 import { Card }from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faLocationArrow  } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -41,7 +43,7 @@ class Topics extends Component {
                         <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug} >
                           <Card className='Card' >
                               <Card.Header className='cardHeader'>
-                                <Card.Title>{topic.slug}</Card.Title>
+                                <Card.Title> <FontAwesomeIcon icon={faLocationArrow}  /> &nbsp; {topic.slug}</Card.Title>
                               </Card.Header>
                               
                                 <Card.Body>
