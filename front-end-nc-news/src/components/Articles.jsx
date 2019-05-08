@@ -7,7 +7,7 @@ import loaderGif from '../images/roboloader.gif'
 import { Card }from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown, faComment, faHeart, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
-import avatar from '../images/user.png'
+import guestAvatar from '../images/user.png'
 import { getUser } from './apis'
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -54,7 +54,7 @@ class Articles extends Component {
                                 <Card.Text>in {article.topic}</Card.Text>
                                 <Card.Subtitle 
                                   className="articleAuthor">by {article.author} 
-                                  <img src={this.getAuthorAvatar(article.author)} alt='avatar not worked' height="42" width="42"></img> 
+                                  <img src={guestAvatar} alt='avatar not worked' height="42" width="42"></img> 
                                 </Card.Subtitle>
                               </Card.Header>
                                 <Card.Body>
@@ -100,12 +100,13 @@ class Articles extends Component {
   }
 
   getAuthorAvatar = (author) => {
-    return Promise.resolve(getUser(author))
+    getUser(author)
     .then((authorData) => {
       console.log(authorData.avatar_url)
       return authorData.avatar_url
+      
     })
-     
+    // return 'https://avatars2.githubusercontent.com/u/24604688?s=460&v=4'
   }
 
 
@@ -122,6 +123,7 @@ class Articles extends Component {
               loading:false
             })
           })
+          
   }
 
   

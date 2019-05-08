@@ -3,6 +3,7 @@ import '../App.css';
 import guestAvatar from '../images/user.png'
 
 import { Link } from '@reach/router'
+import { Image, Button }from 'react-bootstrap'
 
 
 
@@ -29,7 +30,7 @@ class UserInfo extends Component {
             
             <div className="userInfo">
            
-                <span>{this.state.LoginStatus}   <img src={this.props.avatarUrl || guestAvatar} alt='' width={30} height={30} />   {this.state.UserContentLink}   <button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</button></span>
+                <span>{this.state.LoginStatus}   <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />   {this.state.UserContentLink}   <Button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</Button></span>
 
                   
             </div>
