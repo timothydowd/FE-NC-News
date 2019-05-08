@@ -3,7 +3,7 @@ import '../App.css';
 import guestAvatar from '../images/user.png'
 
 import { Link } from '@reach/router'
-import { Image, Button }from 'react-bootstrap'
+import { Image, Button, Dropdown }from 'react-bootstrap'
 
 
 
@@ -29,8 +29,25 @@ class UserInfo extends Component {
         return (
             
             <div className="userInfo">
+            
            
-                <span>{this.state.LoginStatus}   <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />   {this.state.UserContentLink}   <Button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</Button></span>
+                <span className="navbar-right">{this.state.LoginStatus}   
+
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Your Articles</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">LogOut</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+                
+                {this.state.UserContentLink}   
+                <Button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</Button>
+                </span>
 
                   
             </div>

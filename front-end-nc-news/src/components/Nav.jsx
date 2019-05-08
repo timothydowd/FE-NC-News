@@ -1,41 +1,126 @@
 import React, { Component } from 'react';
-import { Form, Button, NavDropdown, FormControl, Nav, Navbar }from 'react-bootstrap'
+import { Image, Dropdown, Form, Button, NavDropdown, FormControl, Nav, Navbar }from 'react-bootstrap'
 import UserInfo from './UserInfo'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../App.css'
+import guestAvatar from '../images/user.png'
+import { Link } from '@reach/router'
+import '../../node_modules/bootstrap-css-only'
+
 
 
 class Navi extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      
+        LoginStatus: <Link to='/login'>Log in</Link>,
+        UserContentLink: false
+        
+    };
+    
+    this.handleLogOutClick = this.handleLogOutClick.bind(this);
+
+}
   
+    // render() {
+    //   console.log('in navi', this.props.avatarUrl)
+    //   return (
+    //     <div className="App">
+    //       <Navbar bg="dark" expand="lg">
+    //         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+    //           <Nav className="mr-auto">
+    //             <Nav.Link className='text-light bg-dark' href='/'> Top Articles </Nav.Link>
+    //             <Nav.Link className='text-light bg-dark' href='/topics'> Articles By Topic </Nav.Link>
+    //             {/* <UserInfo className='userInfo' userLoggedIn={this.props.userLoggedIn} setUserLogout={this.props.setUserLogout} avatarUrl={this.props.avatarUrl}/>  */}
+    //             <div className="userInfo">
+            
+           
+    //             <span className="navbar-right">{this.state.LoginStatus}   
+
+    //             <Dropdown>
+    //                 <Dropdown.Toggle variant="success" id="dropdown-basic">
+    //                     <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />
+    //                 </Dropdown.Toggle>
+
+    //                 <Dropdown.Menu>
+    //                     <Dropdown.Item href="#/action-1">Your Articles</Dropdown.Item>
+    //                     <Dropdown.Item href="#/action-2">LogOut</Dropdown.Item>
+    //                 </Dropdown.Menu>
+    //             </Dropdown>
+
+                
+    //             {this.state.UserContentLink}   
+    //             <Button onClick={this.handleLogOutClick} disabled={!this.props.userLoggedIn}>Log Out</Button>
+    //             </span>
+
+                  
+    //             </div>
+    //           </Nav>
+    //         {/* </Navbar.Collapse> */}
+    //       </Navbar>
+    //     </div>
+    //   );
+    // }
+
+
     render() {
-      console.log('in navi', this.props.avatarUrl)
-      return (
-        <div className="App">
-          <Navbar bg="dark" expand="lg">
-            {/* <Navbar.Collapse id="basic-navbar-nav"> */}
-              <Nav className="mr-auto">
-                <Nav.Link className='text-light bg-dark' href='/'> Top Articles </Nav.Link>
-                <Nav.Link className='text-light bg-dark' href='/topics'> Articles By Topic </Nav.Link>
-                <UserInfo className='userInfo' userLoggedIn={this.props.userLoggedIn} setUserLogout={this.props.setUserLogout} avatarUrl={this.props.avatarUrl}/> 
-              </Nav>
-            {/* </Navbar.Collapse> */}
-          </Navbar>
-        </div>
-      );
+      return(
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="/">Top Articles</Nav.Link>
+            <Nav.Link href="/topics">Topics</Nav.Link>
+          </Nav>
+          <Nav>
+          {this.state.LoginStatus}
+          {this.props.userLoggedIn ? <Dropdown>
+                     <Dropdown.Toggle variant="success" id="dropdown-basic">
+                         <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />
+                     </Dropdown.Toggle>
+
+                     <Dropdown.Menu>
+                         <Dropdown.Item href="/usercontent">Your Articles</Dropdown.Item>
+                         <Dropdown.Divider />
+                         <Dropdown.Item onClick={this.handleLogOutClick} >LogOut</Dropdown.Item>
+                     </Dropdown.Menu>
+            </Dropdown> : <Image src={guestAvatar} roundedCircle width={30} height={30} />}
+            
+              
+            
+          </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      )
+    }
+
+
+    handleLogOutClick(){
+       
+      this.props.setUserLogout()
+      this.setState({
+          LoginStatus: <Nav.Link href="/login">Log in</Nav.Link>,
+          UserContentLink: false
+      })
+        
+    }
+
+    componentDidUpdate(prevProps){
+      
+        if(this.props.userLoggedIn && prevProps.userLoggedIn !== this.props.userLoggedIn){
+            this.setState({
+                LoginStatus: `Logged in as ${this.props.userLoggedIn}`,
+                UserContentLink: <Link to='/usercontent'>Your Content</Link>
+                
+              })
+        }
+
     }
   }
 
-// const Nav = props => {    
-//     console.log(props)       
-//        return <nav className="nav">
-//            <Link to='/'>Top Articles</Link>
-          
-//            <Link to='/topics'>Articles By Topic</Link>
-            
-//            <UserInfo userLoggedIn={props.userLoggedIn} setUserLogout={props.setUserLogout} avatarUrl={props.avatar_url}/>
-           
-           
-//            </nav>
-//     }
-
 export default Navi;
+

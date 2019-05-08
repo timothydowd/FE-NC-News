@@ -11,6 +11,7 @@ import Login from './components/Login'
 
 import Header from './components/Header' 
 import UserContent from './components/UserContent'
+import '../node_modules/bootstrap-css-only'
 
 
 class App extends Component {
