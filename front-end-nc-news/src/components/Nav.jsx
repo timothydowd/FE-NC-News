@@ -6,7 +6,9 @@ import '../App.css'
 
 
 class Navi extends Component {
+  
     render() {
+      console.log('in navi', this.props.avatarUrl)
       return (
         <div className="App">
           <Navbar bg="dark" expand="lg">
@@ -14,7 +16,7 @@ class Navi extends Component {
               <Nav className="mr-auto">
                 <Nav.Link className='text-light bg-dark' href='/'> Top Articles </Nav.Link>
                 <Nav.Link className='text-light bg-dark' href='/topics'> Articles By Topic </Nav.Link>
-                <UserInfo className='userInfo' userLoggedIn={this.props.userLoggedIn} setUserLogout={this.props.setUserLogout} avatarUrl={this.props.avatar_url}/> 
+                <UserInfo className='userInfo' userLoggedIn={this.props.userLoggedIn} setUserLogout={this.props.setUserLogout} avatarUrl={this.props.avatarUrl}/> 
               </Nav>
             {/* </Navbar.Collapse> */}
           </Navbar>

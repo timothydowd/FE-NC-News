@@ -7,7 +7,8 @@ import loaderGif from '../images/roboloader.gif'
 import { Card }from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown, faComment, faHeart, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
-
+import avatar from '../images/user.png'
+import { getUser } from './apis'
 //https://ncnewstimdowd.herokuapp.com/api
 
 class Articles extends Component {
@@ -43,6 +44,7 @@ class Articles extends Component {
           
             {
                 this.state.articles.map(article => {
+                  
                     return (
                         
                         <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
@@ -50,15 +52,14 @@ class Articles extends Component {
                               <Card.Header className='cardHeader'>
                                 <Card.Title className='cardTitle'> <FontAwesomeIcon icon={faNewspaper} /> &nbsp; {article.title}</Card.Title>
                                 <Card.Text>in {article.topic}</Card.Text>
-                                <Card.Subtitle className="articleAuthor">by {article.author}</Card.Subtitle>
+                                <Card.Subtitle 
+                                  className="articleAuthor">by {article.author} 
+                                  <img src={this.getAuthorAvatar(article.author)} alt='avatar not worked' height="42" width="42"></img> 
+                                </Card.Subtitle>
                               </Card.Header>
-                              
                                 <Card.Body>
-                                  {/* <Link to ={`/articles/${article.article_id}`} key={article.article_id} > */}
                                     <Card.Text> <FontAwesomeIcon icon={faQuoteLeft} /> &nbsp; {`${article.body.substring(0,400)}......`} &nbsp; <FontAwesomeIcon icon={faQuoteRight} /> </Card.Text>
-                                  {/* </Link> */}
                                 </Card.Body>
-                                
                               <Card.Footer>Created: {article.created_at} &nbsp; <FontAwesomeIcon icon={faComment} /> {article.comment_count} &nbsp; <FontAwesomeIcon icon={article.votes < 0 ? faThumbsDown : faThumbsUp} /> {article.votes}</Card.Footer>
                           </Card>
                         </Link>
@@ -98,12 +99,21 @@ class Articles extends Component {
     this.setState({query:e.target.value})
   }
 
+  getAuthorAvatar = (author) => {
+    return Promise.resolve(getUser(author))
+    .then((authorData) => {
+      console.log(authorData.avatar_url)
+      return authorData.avatar_url
+    })
+     
+  }
+
 
   componentDidMount() {
     
       Promise.resolve(getArticles(this.props.topicQuery || this.props.userQuery))
           .then(articleData => {
-            console.log('didmount')
+            
             this.setState({ 
               articles: articleData, 
             
@@ -121,7 +131,7 @@ class Articles extends Component {
       if(this.state.query !== prevState.query || this.state.articleAdded === true){
         Promise.resolve(getArticles(this.props.topicQuery || this.props.userQuery, this.state.query))
           .then(articles => {
-            console.log('didupdate')
+            
             this.setState({ 
               articles: articles,
               

@@ -49,6 +49,7 @@ class App extends Component {
  
 
   render() {
+    console.log('in app', this.state.avatar_url)
     return (
       <div className="App">
 
