@@ -81,12 +81,12 @@ class Navi extends Component {
           <span className='loginStatus'>{this.state.LoginStatus}</span>
 
           {this.props.userLoggedIn ? 
-            <Dropdown>
+            <Dropdown alignRight >
                      <Dropdown.Toggle variant="success" id="dropdown-basic">
                          <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />
                      </Dropdown.Toggle>
 
-                     <Dropdown.Menu>
+                     <Dropdown.Menu right >
                          <Dropdown.Item href="/usercontent">Your Articles</Dropdown.Item>
                          <Dropdown.Divider />
                          <Dropdown.Item onClick={this.handleLogOutClick} >LogOut</Dropdown.Item>
