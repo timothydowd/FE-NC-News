@@ -128,4 +128,17 @@ export const getCommentsByArticleId = (articleId) => {
   })
 }
 
-export default {  getArticles, getTopics, postTopic, deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId }
+export const changeTimeFormat = (timeStamp) => {
+  //2019-05-08T10:35:13.281Z
+  if(!timeStamp) return
+  
+  const year = timeStamp.slice(0,4) 
+  const month = timeStamp.slice(5,7)
+  const day = timeStamp.slice(8,10)
+  const hour = timeStamp.slice(11,13)
+  const min = timeStamp.slice(14,16)
+  
+  return `${day}-${month}-${year} ${hour}:${min}`
+}
+
+export default {  changeTimeFormat, getArticles, getTopics, postTopic, deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId }

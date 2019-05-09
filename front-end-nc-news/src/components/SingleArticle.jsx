@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import '../App.css';
 import { navigate } from '@reach/router'
 import AddCommentForm from '../components/AddCommentForm'
-import { deleteArticle, deleteComment, patchVoteByArticleId, getArticleById, getCommentsByArticleId } from '../components/apis'
+import { changeTimeFormat, deleteArticle, deleteComment, patchVoteByArticleId, getArticleById, getCommentsByArticleId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 import SingleComment from './SingleComment'
 import { Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp, faThumbsDown, faComment, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt, faThumbsUp, faThumbsDown, faComment, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -102,8 +102,6 @@ class SingleArticle extends Component {
     }
 
     
-
-
     handleClickDeleteArticle() {
         this.setState({loading: true})
          Promise.resolve(deleteArticle(this.state.articleByArticleId.article_id))
@@ -131,21 +129,7 @@ class SingleArticle extends Component {
 
         return(
             <div>
-                    <h1>single article</h1>
-                        {/* <div className='articleContainer'>
-                            <p> Title: {title} </p>
-                            <p> Author: {author} </p>
-                            <p> Body: {body} </p>
-                            <p> Comments: {comment_count} </p>
-                            <p> Created: {created_at} </p>
-                            <p> Topic: {topic} </p>
-                            <p> Likes: {votes+this.state.currentLike} </p>
-                            <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(1)} >👍🏻</span><span>  vote  </span><span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(-1)} >👎🏻</span> 
-                            <div>
-                                <button disabled={this.props.userLoggedIn !== this.state.articleByArticleId.author } onClick={this.handleClickDeleteArticle} >Delete Article</button>
-                            </div>
-                        </div> */}
-
+                   
                             <Card className='Card' >
                               <Card.Header className='cardHeader'>
                                 <Card.Title className='cardTitle'> <FontAwesomeIcon icon={faNewspaper} /> &nbsp; {title}</Card.Title>
@@ -158,7 +142,7 @@ class SingleArticle extends Component {
                                     <Card.Text> <FontAwesomeIcon icon={faQuoteLeft} /> {body} <FontAwesomeIcon icon={faQuoteRight} /> </Card.Text>
                                  
                                 </Card.Body>
-                              <Card.Footer>Created: {created_at} &nbsp;&nbsp; <FontAwesomeIcon icon={faComment} /> {comment_count} 
+                              <Card.Footer> <FontAwesomeIcon icon={faCalendarAlt} /> {changeTimeFormat(created_at)} &nbsp;&nbsp; <FontAwesomeIcon icon={faComment} /> {comment_count} 
                               <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(1)} > &nbsp;&nbsp; <FontAwesomeIcon icon={faThumbsUp} /> </span>
                               <span>  {votes+this.state.currentLike}  </span>
                               <span role="img" aria-label='Close' onClick={() => this.handleArticleLikeClick(-1)} > <FontAwesomeIcon icon={faThumbsDown} /> &nbsp;&nbsp; </span> 

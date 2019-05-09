@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-
+import { changeTimeFormat } from '../components/apis'
 import {  patchVoteByCommentId } from '../components/apis'
 import loaderGif from '../images/roboloader.gif'
 import { Card, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp, faThumbsDown, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt, faThumbsUp, faThumbsDown, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 
 //https://ncnewstimdowd.herokuapp.com/api
 
@@ -90,10 +90,10 @@ class SingleComment extends Component {
                 <Card.Body>                
                     <Card.Text> <FontAwesomeIcon icon={faQuoteLeft} /> &nbsp; {this.props.comment.body} &nbsp; <FontAwesomeIcon icon={faQuoteRight} />  </Card.Text>               
                 </Card.Body>
-                <Card.Footer>Created: {this.props.comment.created_at}  
+                <Card.Footer> <FontAwesomeIcon icon={faCalendarAlt} /> {changeTimeFormat(this.props.comment.created_at)} &nbsp; 
                 <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(1, this.props.comment.comment_id)} > <FontAwesomeIcon icon={faThumbsUp} /> </span>
                 <span> {this.props.comment.votes + this.state.likeCount}  </span>
-                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} ><FontAwesomeIcon icon={faThumbsDown} /> </span> 
+                <span role="img" aria-label='Close' onClick={() => this.handleCommentLikeClick(-1, this.props.comment.comment_id)} ><FontAwesomeIcon icon={faThumbsDown} /> &nbsp; </span> 
                     <Button disabled={this.props.userLoggedIn !== this.props.comment.author } onClick={() => this.props.handleClickDeleteComment(this.props.comment.comment_id)} >Delete Comment</Button>
                 </Card.Footer>
             </Card>

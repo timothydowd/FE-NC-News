@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Link } from '@reach/router'
-import { getArticles }  from './apis'
+import { changeTimeFormat, getArticles }  from './apis'
 import AddArticleForm from './AddArticleForm'
 import loaderGif from '../images/roboloader.gif'
 import { Card, Button }from 'react-bootstrap'
@@ -77,7 +77,7 @@ class Articles extends Component {
                               <Card.Subtitle 
                                 className="articleAuthor">by {article.author} 
                                 <img src={guestAvatar} alt='avatar not worked' height="42" width="42"></img> 
-                                <FontAwesomeIcon icon={faCalendarAlt} /> {article.created_at} &nbsp; <FontAwesomeIcon icon={faComment} /> {article.comment_count} &nbsp; <FontAwesomeIcon icon={article.votes < 0 ? faThumbsDown : faThumbsUp} /> {article.votes}
+                                <FontAwesomeIcon icon={faCalendarAlt} /> {changeTimeFormat(article.created_at)} &nbsp; <FontAwesomeIcon icon={faComment} /> {article.comment_count} &nbsp; <FontAwesomeIcon icon={article.votes < 0 ? faThumbsDown : faThumbsUp} /> {article.votes}
                               </Card.Subtitle>
                             </Card.Header>
                               <Card.Body>
