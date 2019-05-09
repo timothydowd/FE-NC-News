@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <div className="App">
 
-         <Header />
+         {/* <Header /> */}
          
         
           <Navi userLoggedIn={this.state.userLoggedIn} setUserLogout={this.setUserLogout} avatarUrl={this.state.avatar_url}/>

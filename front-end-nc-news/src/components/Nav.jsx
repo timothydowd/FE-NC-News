@@ -6,6 +6,7 @@ import '../App.css'
 import guestAvatar from '../images/user.png'
 import { Link } from '@reach/router'
 import '../../node_modules/bootstrap-css-only'
+import ncnewsLogo from '../images/ncnews2.jpg'
 
 
 
@@ -70,7 +71,9 @@ class Navi extends Component {
     render() {
       return(
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="/"> 
+            <Image src={ncnewsLogo} height='50px' rounded />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
