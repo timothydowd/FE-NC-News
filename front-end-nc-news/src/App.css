@@ -133,3 +133,20 @@ body {
 .articleAuthor {
   padding: 5px
 }
+.loginStatus {
+  color: white;
+  margin-top: 0.55rem;
+  margin-right: 0.75rem;
+}
+
+.verticalCenterNav {
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  
+}
+
+.avatarAlign {
+  margin-top: 0.75rem;
+ 
+  
+}

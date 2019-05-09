@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Dropdown, Form, Button, NavDropdown, FormControl, Nav, Navbar }from 'react-bootstrap'
-import UserInfo from './UserInfo'
+
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../App.css'
 import guestAvatar from '../images/user.png'
@@ -16,8 +16,9 @@ class Navi extends Component {
 
     this.state = {
       
-        LoginStatus: <Link to='/login'>Log in</Link>,
-        UserContentLink: false
+        // LoginStatus: <Link to='/login' className='verticalCenterNav' >Log in</Link>,
+        LoginStatus: <Nav.Link href="/login" className='verticalCenterNav' >Log in</Nav.Link>
+        // UserContentLink: false
         
     };
     
@@ -77,8 +78,10 @@ class Navi extends Component {
             <Nav.Link href="/topics">Topics</Nav.Link>
           </Nav>
           <Nav>
-          {this.state.LoginStatus}
-          {this.props.userLoggedIn ? <Dropdown>
+          <span className='loginStatus'>{this.state.LoginStatus}</span>
+
+          {this.props.userLoggedIn ? 
+            <Dropdown>
                      <Dropdown.Toggle variant="success" id="dropdown-basic">
                          <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />
                      </Dropdown.Toggle>
@@ -88,7 +91,9 @@ class Navi extends Component {
                          <Dropdown.Divider />
                          <Dropdown.Item onClick={this.handleLogOutClick} >LogOut</Dropdown.Item>
                      </Dropdown.Menu>
-            </Dropdown> : <Image src={guestAvatar} roundedCircle width={30} height={30} />}
+            </Dropdown> : 
+            <Image className='avatarAlign' src={guestAvatar} roundedCircle width={30} height={30} />
+          }
             
               
             
@@ -103,8 +108,9 @@ class Navi extends Component {
        
       this.props.setUserLogout()
       this.setState({
-          LoginStatus: <Nav.Link href="/login">Log in</Nav.Link>,
-          UserContentLink: false
+        // LoginStatus: <Link to='/login' className='verticalCenterNav' >Log in</Link>,
+        LoginStatus: <Nav.Link href="/login" className='verticalCenterNav' >Log in</Nav.Link>
+          // UserContentLink: false
       })
         
     }
@@ -114,7 +120,7 @@ class Navi extends Component {
         if(this.props.userLoggedIn && prevProps.userLoggedIn !== this.props.userLoggedIn){
             this.setState({
                 LoginStatus: `Logged in as ${this.props.userLoggedIn}`,
-                UserContentLink: <Link to='/usercontent'>Your Content</Link>
+                // UserContentLink: <Link to='/usercontent'>Your Content</Link>
                 
               })
         }
