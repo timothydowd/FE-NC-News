@@ -89,7 +89,7 @@ class Navi extends Component {
                          <Image src={this.props.avatarUrl || guestAvatar} roundedCircle width={30} height={30} />
                      </Dropdown.Toggle>
 
-                     <Dropdown.Menu right >
+                     <Dropdown.Menu >
                          <Dropdown.Item href="/usercontent">Your Articles</Dropdown.Item>
                          <Dropdown.Divider />
                          <Dropdown.Item onClick={this.handleLogOutClick} >LogOut</Dropdown.Item>

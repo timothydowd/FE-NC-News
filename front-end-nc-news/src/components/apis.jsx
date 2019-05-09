@@ -82,7 +82,8 @@ import Axios from 'axios';
   ).then((userData) => {
     if(Array.isArray(userData)) return userData.data.users
     else return userData.data.user
-    
+  }).catch(err => {
+    console.log(err)
   })
 }
 
