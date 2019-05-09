@@ -38,12 +38,13 @@ class App extends Component {
  
 
   setUserLogin(username, avatarUrl){
-    
+   
     this.setState({userLoggedIn: username, avatar_url: avatarUrl})
    
   }
 
   setUserLogout(){
+   
     this.setState({userLoggedIn: null, avatar_url: null})
   }
 
