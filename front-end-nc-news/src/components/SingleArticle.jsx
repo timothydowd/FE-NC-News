@@ -169,7 +169,7 @@ class SingleArticle extends Component {
                               
                             </Card>
 
-                        <div className='commentsContainer'>
+                        <div >
                             <h3>comments</h3>
 
                             <AddCommentForm article_id={this.props.article_id} handleAddCommentClick={this.handleAddCommentClick} userLoggedIn={this.props.userLoggedIn} />

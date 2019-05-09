@@ -42,7 +42,7 @@ class Topics extends Component {
 
                         <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug} >
                           <Card className='Card' >
-                              <Card.Header className='cardHeader'>
+                              <Card.Header className='cardHeader' >
                                 <Card.Title> <FontAwesomeIcon icon={faLocationArrow}  /> &nbsp; {topic.slug}</Card.Title>
                               </Card.Header>
                               

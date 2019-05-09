@@ -11,12 +11,9 @@ const Home = () => {
 
  
     return (
-      <div className="App">
-        <h1>Home page</h1>
-       
+      
         <Articles inHomePage={true} />
          
-      </div>
     );
   
 
