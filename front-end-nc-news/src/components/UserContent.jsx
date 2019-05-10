@@ -16,18 +16,12 @@ class UserContent extends Component {
     return (
       <div className="App">
         <h1>Your Content</h1>
-        <Articles  userQuery = {this.state.userQuery} />
+        <Articles  userQuery = {`?author=${this.props.userLoggedIn}`} />
         
          
       </div>
     );
   }
-
- componentDidMount() {
-   this.setState({userQuery: `?author=${this.props.userLoggedIn}`})
-   console.log('inusercontent')
- }
-
 
 }
 

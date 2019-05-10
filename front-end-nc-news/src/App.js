@@ -51,12 +51,12 @@ class App extends Component {
 
   checkUserLoggedInSessionStorage() {
     if(sessionStorage.getItem('userLoggedIn')){
-      console.log('session storage', sessionStorage.getItem('userLoggedIn'))
+     
       this.setState({userLoggedIn: sessionStorage.getItem('userLoggedIn'), avatar_url: sessionStorage.getItem('avatar_url')})
     }
     else{
       this.setState({userLoggedIn: null, avatar_url: null})
-      console.log('nothing in session storage')
+      
     }
   }
 
@@ -77,7 +77,7 @@ class App extends Component {
  
 
   render() {
-    console.log('in app', this.state.avatar_url)
+    
     return (
       <div className="App">
 

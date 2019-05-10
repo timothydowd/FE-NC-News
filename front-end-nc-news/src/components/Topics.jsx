@@ -33,12 +33,7 @@ class Topics extends Component {
                 {
                   this.state.topics.map(topic => {
                       return (
-                        // <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug}>
-                        //    <div key={topic.slug} className='articleContainer' >
-                        //       <p> Topic: {topic.slug} </p>
-                        //       <p> Description: {topic.description} </p>
-                        //   </div>
-                        // </Link>     
+                          
 
                         <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug} >
                           <Card className='Card' >

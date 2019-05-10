@@ -12,7 +12,7 @@ import Axios from 'axios';
       query2Formatted = query2
     }
 
-    console.log(`https://ncnewstimdowd.herokuapp.com/api/articles/${query1}${query2Formatted}`)
+    console.log('in getArticles api', `https://ncnewstimdowd.herokuapp.com/api/articles/${query1}${query2Formatted}`)
     return Axios.get(
       `https://ncnewstimdowd.herokuapp.com/api/articles/${query1}${query2Formatted}`
     )

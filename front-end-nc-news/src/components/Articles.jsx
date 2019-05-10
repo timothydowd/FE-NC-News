@@ -45,27 +45,7 @@ class Articles extends Component {
             {
                 this.state.articles.map(article => {
                   
-                    // return (
-                        
-                    //     <Link to ={`/articles/${article.article_id}`} key={article.article_id} >
-                    //       <Card className='Card' >
-                    //           <Card.Header className='cardHeader'>
-                    //             <Card.Title className='cardTitle'> <FontAwesomeIcon icon={faNewspaper} /> &nbsp; {article.title}</Card.Title>
-                    //             <Card.Text>in {article.topic}</Card.Text>
-                    //             <Card.Subtitle 
-                    //               className="articleAuthor">by {article.author} 
-                    //               <img src={guestAvatar} alt='avatar not worked' height="42" width="42"></img> 
-                    //               <FontAwesomeIcon icon={faCalendarAlt} /> {article.created_at} &nbsp; <FontAwesomeIcon icon={faComment} /> {article.comment_count} &nbsp; <FontAwesomeIcon icon={article.votes < 0 ? faThumbsDown : faThumbsUp} /> {article.votes}
-                    //             </Card.Subtitle>
-                    //           </Card.Header>
-                    //             <Card.Body>
-                    //                 <Card.Text> <FontAwesomeIcon icon={faQuoteLeft} /> &nbsp; {`${article.body.substring(0,400)}......`} &nbsp; <FontAwesomeIcon icon={faQuoteRight} /> </Card.Text>
-                    //             </Card.Body>
-                    //           <Card.Footer> <Button> Read More? </Button> </Card.Footer>
-                    //       </Card>
-                    //     </Link>
-                        
-                    // )
+                    
 
                     return (
                         
@@ -105,6 +85,7 @@ class Articles extends Component {
       return this.renderArticles('Latest Articles')   
     }
     else if(this.props.userQuery){
+      console.log('in articles', this.props.userQuery)
       return this.renderArticles('Your Articles') 
     }
     else return this.renderArticles('Add an Article')
@@ -134,13 +115,13 @@ class Articles extends Component {
 
 
   componentDidMount() {
-    
-      Promise.resolve(getArticles(this.props.topicQuery || this.props.userQuery))
+      console.log('articles component did mount: ', this.props.userQuery)
+      // Promise.resolve(getArticles(this.props.topicQuery || this.props.userQuery))
+      Promise.resolve(getArticles(this.props.topicQuery))
           .then(articleData => {
             
             this.setState({ 
               articles: articleData, 
-            
               query: '',
               articleAdded: false,
               loading:false
