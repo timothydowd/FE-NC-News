@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown, faComment, faCalendarAlt, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 import guestAvatar from '../images/user.png'
 import { getUser } from './apis'
+// import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 //https://ncnewstimdowd.herokuapp.com/api
 
 class Articles extends Component {
@@ -49,8 +50,8 @@ class Articles extends Component {
 
                     return (
                         
-                      
-                        <Card className='Card' key={article.article_id} >
+                      <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6" key={article.article_id}>
+                        <Card  key={article.article_id} >
                             <Card.Header className='cardHeader'>
                               <Card.Title className='cardTitle'> <FontAwesomeIcon icon={faNewspaper} /> &nbsp; {article.title}</Card.Title>
                               <Card.Text>in {article.topic}</Card.Text>
@@ -65,7 +66,7 @@ class Articles extends Component {
                               </Card.Body>
                             <Card.Footer> <Button href={`/articles/${article.article_id}`}> Read More? </Button> </Card.Footer>
                         </Card>
-                      
+                      </div>
                       
                   )
                 })   
