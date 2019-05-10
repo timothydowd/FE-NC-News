@@ -28,11 +28,17 @@ class App extends Component {
     
     this.setUserLogin = this.setUserLogin.bind(this);
     this.setUserLogout = this.setUserLogout.bind(this);
+    this.logInSessionStorage = this.logInSessionStorage.bind(this);
     
   }
 
   componentDidMount(){
     this.setState({user: null})
+    this.checkUserLoggedInSessionStorage()
+  }
+
+  componentDidUpdate(){
+
   }
 
  
@@ -43,9 +49,29 @@ class App extends Component {
    
   }
 
+  checkUserLoggedInSessionStorage() {
+    if(sessionStorage.getItem('userLoggedIn')){
+      console.log('session storage', sessionStorage.getItem('userLoggedIn'))
+      this.setState({userLoggedIn: sessionStorage.getItem('userLoggedIn'), avatar_url: sessionStorage.getItem('avatar_url')})
+    }
+    else{
+      this.setState({userLoggedIn: null, avatar_url: null})
+      console.log('nothing in session storage')
+    }
+  }
+
+  logInSessionStorage(username, avatar_url){
+    sessionStorage.setItem('userLoggedIn', username)
+    sessionStorage.setItem('avatar_url', avatar_url)
+    this.checkUserLoggedInSessionStorage()
+    //this.setState({userLoggedIn: sessionStorage.getItem('userLoggedIn'), avatar_url: sessionStorage.getItem('avatar_url')})
+  }
+
+  
+
   setUserLogout(){
-   
-    this.setState({userLoggedIn: null, avatar_url: null})
+    sessionStorage.clear()
+    this.checkUserLoggedInSessionStorage()
   }
 
  
@@ -62,7 +88,7 @@ class App extends Component {
           <Router>
             
             <Home path='/' />
-            <Login path='/login' setUserLogin={this.setUserLogin}/>
+            <Login path='/login' setUserLogin={this.setUserLogin} logInSessionStorage={this.logInSessionStorage}/>
             <Topics path='/topics' userLoggedIn={this.state.userLoggedIn} />
             <SingleTopicAndArticles path='/articles' userLoggedIn={this.state.userLoggedIn} />
             {/* <Articles path='/articles' /> */}

@@ -35,7 +35,9 @@ class Login extends Component {
                 this.setState({loginFailed: true})
             }
             else {
-                this.props.setUserLogin(userDetails.username, userDetails.avatar_url)
+                
+                //this.props.setUserLogin(userDetails.username, userDetails.avatar_url)
+                this.props.logInSessionStorage(userDetails.username, userDetails.avatar_url)
                 navigate('/topics')
             }
         })
