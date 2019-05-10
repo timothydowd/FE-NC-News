@@ -125,12 +125,13 @@ class SingleArticle extends Component {
             <img src={loaderGif} height='150px' width='150px'/>
           )
 
-        const { title, body, author, comment_count, created_at, topic, votes } = this.state.articleByArticleId
+        const { title, body, author, comment_count, created_at, topic, votes, article_id } = this.state.articleByArticleId
 
         return(
-            <div>
+            <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6" key={article_id}>
+            
                    
-                            <Card className='Card' >
+                            <Card >
                               <Card.Header className='cardHeader'>
                                 <Card.Title className='cardTitle'> <FontAwesomeIcon icon={faNewspaper} /> &nbsp; {title}</Card.Title>
                                 <Card.Text>in {topic}</Card.Text>

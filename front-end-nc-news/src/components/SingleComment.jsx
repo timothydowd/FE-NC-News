@@ -82,8 +82,8 @@ class SingleComment extends Component {
             //         </div>
             //     </div>
             // </div>
-
-            <Card className='Card' key={this.props.comment.comment_id} >
+        <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-12" key={this.props.comment.comment_id}>
+            <Card >
                 <Card.Header className='cardHeader'>
                     <Card.Title className='cardTitle'> {this.props.comment.author} says...</Card.Title>
                 </Card.Header>            
@@ -97,6 +97,8 @@ class SingleComment extends Component {
                     <Button disabled={this.props.userLoggedIn !== this.props.comment.author } onClick={() => this.props.handleClickDeleteComment(this.props.comment.comment_id)} >Delete Comment</Button>
                 </Card.Footer>
             </Card>
+        </div>
+            
         )
     }
 }
