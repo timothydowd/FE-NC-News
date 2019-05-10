@@ -34,9 +34,9 @@ class Topics extends Component {
                   this.state.topics.map(topic => {
                       return (
                           
-
-                        <Link to ={`/articles/?topic=${topic.slug}`} key={topic.slug} >
-                          <Card className='Card' >
+                        <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6" key={topic.slug}>
+                        <Link to ={`/articles/?topic=${topic.slug}`}  >
+                          <Card >
                               <Card.Header className='cardHeader' >
                                 <Card.Title> <FontAwesomeIcon icon={faLocationArrow}  /> &nbsp; {topic.slug}</Card.Title>
                               </Card.Header>
@@ -49,6 +49,7 @@ class Topics extends Component {
                               
                           </Card>
                         </Link>
+                      </div>
                       )
                   })   
                 }

@@ -54,28 +54,28 @@ class AddTopicForm extends Component {
       //       </div>
       
       // </form>
+      <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6">
+        <Card  >
+          <Card.Header>
+          <FontAwesomeIcon icon={faPen} /> &nbsp; Add a New Topic? 
+          </Card.Header>
+              <Form className='FormInput' onSubmit={this.handleFormSubmit}>
+                <Form.Group controlId="formTopic">
+                  {/* <Form.Label>Topic</Form.Label> */}
+                  <Form.Control className="text-area-input" type="input" placeholder="Enter a topic name..." onChange={this.handleChangeTopic} />
+                </Form.Group>
 
-      <Card className='Card' >
-        <Card.Header>
-        <FontAwesomeIcon icon={faPen} /> &nbsp; Add a New Topic? 
-        </Card.Header>
-            <Form className='FormInput' onSubmit={this.handleFormSubmit}>
-              <Form.Group controlId="formTopic">
-                {/* <Form.Label>Topic</Form.Label> */}
-                <Form.Control type="input" placeholder="Enter a topic name..." onChange={this.handleChangeTopic} />
-              </Form.Group>
+                <Form.Group controlId="formTopicDescription">
+                  {/* <Form.Label>Description</Form.Label> */}
+                  <Form.Control className="text-area-input" type="input" placeholder="Enter a brief description of your topic here..." onChange={this.handleChangeDescription} />
+                </Form.Group>
 
-              <Form.Group controlId="formTopicDescription">
-                {/* <Form.Label>Description</Form.Label> */}
-                <Form.Control type="input" placeholder="Enter a brief description of your topic here..." onChange={this.handleChangeDescription} />
-              </Form.Group>
-
-              <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
-                Add Topic
-              </Button>
-            </Form>                   
-      </Card>
-
+                <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
+                  Add Topic
+                </Button>
+              </Form>                   
+        </Card>
+      </div>
     );
   }
 }

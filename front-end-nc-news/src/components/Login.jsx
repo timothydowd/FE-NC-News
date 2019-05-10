@@ -52,7 +52,7 @@ class Login extends Component {
         <Form className='FormInput' onSubmit={this.handleFormSubmit} >
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="input" placeholder="Enter username..." onChange={this.handleChangeUsername} />
+                <Form.Control className="text-area-input" type="input" placeholder="Enter username..." onChange={this.handleChangeUsername} />
                 <Form.Text className="text-muted" >
                     Please use 'icellusedkars' as it has an avatar image that still exists online...
                 </Form.Text>
@@ -60,7 +60,7 @@ class Login extends Component {
 
             <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="input" placeholder="Enter password..." />
+                <Form.Control className="text-area-input" type="input" placeholder="Enter password..." />
             </Form.Group>
   
             <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit}>

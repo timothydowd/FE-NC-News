@@ -59,28 +59,29 @@ class AddArticleForm extends Component {
       
       // </form>
 
+      <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6">
+        <Card className='Card' >
+          <Card.Header>
+            Add a New Article?
+          </Card.Header>
+            <Form className='FormInput' onSubmit={this.handleFormSubmit}>
+              <Form.Group controlId="formArticleTitle">
+                {/* <Form.Label>Topic</Form.Label> */}
+                <Form.Control className="text-area-input" type="input" placeholder="Enter a title..." onChange={this.handleChangeTitle} />
+              </Form.Group>
 
-      <Card className='Card' >
-      <Card.Header>
-        Add a New Article?
-      </Card.Header>
-          <Form className='FormInput' onSubmit={this.handleFormSubmit}>
-            <Form.Group controlId="formArticleTitle">
-              {/* <Form.Label>Topic</Form.Label> */}
-              <Form.Control type="input" placeholder="Enter a title..." onChange={this.handleChangeTitle} />
-            </Form.Group>
+              <Form.Group controlId="formArticleContent">
+                {/* <Form.Label>Description</Form.Label> */}
+                {/* <Form.Control type="input" placeholder="Write your article here..." onChange={this.handleChangeBody} /> */}
+                <textarea className="text-area-input" id="submitArticleTextArea" rows="7" placeholder="Write your article here..." onChange={this.handleChangeBody}></textarea>
+              </Form.Group>
 
-            <Form.Group controlId="formArticleContent">
-              {/* <Form.Label>Description</Form.Label> */}
-              {/* <Form.Control type="input" placeholder="Write your article here..." onChange={this.handleChangeBody} /> */}
-              <textarea className="form-control" id="submitArticleTextArea" rows="7" placeholder="Write your article here..." onChange={this.handleChangeBody}></textarea>
-            </Form.Group>
-
-            <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
-              Add Article
-            </Button>
-          </Form>                   
-      </Card>
+              <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
+                Add Article
+              </Button>
+            </Form>                   
+        </Card>
+      </div>
     );
   }
 }
