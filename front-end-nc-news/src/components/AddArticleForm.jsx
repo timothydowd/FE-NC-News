@@ -11,7 +11,8 @@ class AddArticleForm extends Component {
         title: "",
         body: "",
         
-      }
+      },
+      inputWarning: false
     
       
     };
@@ -39,8 +40,26 @@ class AddArticleForm extends Component {
     const { title, body } = this.state.newArticle
     const topic = this.props.topicQuery.slice(7)
     Promise.resolve(postArticle( title, body, topic, this.props.userLoggedIn ))
-    .then(() =>  this.props.setArticleAddedToTrue())
+    .then((status) =>  {
+      
+
+      if(status) {
+        
+        this.setState({inputWarning: false})
+        this.props.setArticleAddedToTrue()
+        
+        
+      }
+      else {
+        console.log('result: ', status)
+        this.setState({inputWarning: true})
+      }
+    })
     
+  }
+
+  componentDidMount(){
+    this.setState({inputWarning: false})
   }
 
   
@@ -79,6 +98,14 @@ class AddArticleForm extends Component {
               <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
                 Add Article
               </Button>
+
+              {this.state.inputWarning && 
+                <Form.Text className="warningText">
+                    <p/>
+                    Please ensure there are no empty fields
+                </Form.Text>
+              }
+              
             </Form>                   
         </Card>
       </div>

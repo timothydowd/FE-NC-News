@@ -78,12 +78,12 @@ import Axios from 'axios';
         return status
       })
     }
-    
-     
-
   }
 
   export const postArticle = (title, body, topic, username) => {
+    if(!title || !body){
+      return false
+    }
     return Axios.post(
      `https://ncnewstimdowd.herokuapp.com/api/articles`,
      {
@@ -92,7 +92,9 @@ import Axios from 'axios';
        topic,
        username
      }
-   ).then((status) => console.log(status))
+   ).then((status) => {
+     return status
+   })
 
   
  }
