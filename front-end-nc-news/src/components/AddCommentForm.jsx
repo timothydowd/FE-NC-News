@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from 'axios';
 import { Card, Form, Button } from 'react-bootstrap'
 import '../App.css'
+import { postComment } from './apis'
 
 class AddCommentForm extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class AddCommentForm extends Component {
         
         body: ""
       },
+      inputWarning: false
       
     };
     
@@ -27,16 +29,26 @@ class AddCommentForm extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
     
-    Axios.post(
-        `https://ncnewstimdowd.herokuapp.com/api/articles/${this.props.article_id}/comments`,
-        {
-            body: this.state.newComment.body,
-            username: this.props.userLoggedIn
-        }
-      ).then(() => {
+    Promise.resolve(postComment(this.props.article_id, this.state.newComment.body, this.props.userLoggedIn ))
+    .then((status) => {
+      if(status) {
+        
+        this.setState({inputWarning: false})
         this.props.handleAddCommentClick()
+        
+        
+      }
+      else {
+        console.log('result: ', status)
+        this.setState({inputWarning: true})
+      }
+      
+    })
+    
+  }
 
-      })
+  componentDidMount(){
+    this.setState({inputWarning: false})
   }
 
   render() {
@@ -65,6 +77,13 @@ class AddCommentForm extends Component {
                 <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
                   Add Comment
                 </Button>
+
+                {this.state.inputWarning && 
+                  <Form.Text className="warningText">
+                      <p/>
+                      Please ensure there are no empty fields
+                  </Form.Text>
+                }
               </Form>                   
         </Card>
       </div>

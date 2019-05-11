@@ -99,6 +99,24 @@ import Axios from 'axios';
   
  }
 
+ export const postComment = (article_id, body, username) => {
+
+  if(!body){
+    return false
+  }
+  
+  return Axios.post(
+    `https://ncnewstimdowd.herokuapp.com/api/articles/${article_id}/comments`,
+    {
+        body: body,
+        username: username
+    }
+  ).then((status) => {
+    return status
+
+  })
+ }
+
  export const getUser = (username = '') => {
   return Axios.get(
     `https://ncnewstimdowd.herokuapp.com/api/users/${username}`
@@ -163,4 +181,4 @@ export const changeTimeFormat = (timeStamp) => {
   return `${day}-${month}-${year} ${hour}:${min}`
 }
 
-export default {  changeTimeFormat, getArticles, getTopics, postTopic, deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId }
+export default {  changeTimeFormat, postComment, getArticles, getTopics, postTopic, deleteArticle, deleteComment, patchVoteByCommentId, patchVoteByArticleId, getArticleById, getCommentsByArticleId }
