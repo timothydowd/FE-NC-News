@@ -51,7 +51,16 @@ import Axios from 'axios';
     })
   }
 
-  export const postTopic = (slug, description) => {
+  const hyphenateSlug = (unformattedSlug) => {
+    return unformattedSlug.split('').map( char => {
+      if(char === ' ') return '-'
+      return char
+    }).join('')
+  }
+
+  export const postTopic = (unformattedSlug, description) => {
+    const slug = hyphenateSlug(unformattedSlug)
+    
      return Axios.post(
       `https://ncnewstimdowd.herokuapp.com/api/topics`,
       {
