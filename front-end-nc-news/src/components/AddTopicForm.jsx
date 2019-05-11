@@ -13,6 +13,7 @@ class AddTopicForm extends Component {
         slug: "",
         description: ""
       },
+      inputWarning: false
       
     };
     
@@ -35,12 +36,28 @@ class AddTopicForm extends Component {
     
     const { slug, description } = this.state.newTopic
     Promise.resolve(postTopic( slug, description ))
-    .then(() =>  this.props.setTopicAddedToTrue())
+    .then((result) =>  {
+      if(result) {
+        
+        this.setState({inputWarning: false})
+        this.props.setTopicAddedToTrue()
+        
+        
+      }
+      else {
+        console.log('result: ', result)
+        this.setState({inputWarning: true})
+      }
+      
+    })
     
   }
+
   componentDidMount(){
-    
+    this.setState({inputWarning: false})
   }
+
+  
 
   
 
@@ -73,6 +90,14 @@ class AddTopicForm extends Component {
                 <Button variant="primary" type="submit" onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>
                   Add Topic
                 </Button>
+
+                {this.state.inputWarning && 
+                <Form.Text className="warningText">
+                    <p/>
+                    Please ensure there are no empty fields
+                </Form.Text>
+                }
+
               </Form>                   
         </Card>
       </div>

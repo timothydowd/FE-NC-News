@@ -51,7 +51,10 @@ import Axios from 'axios';
     })
   }
 
-  const hyphenateSlug = (unformattedSlug) => {
+
+  const formatSlug = (unformattedSlug) => {
+    if(!unformattedSlug) return false
+
     return unformattedSlug.split('').map( char => {
       if(char === ' ') return '-'
       return char
@@ -59,15 +62,24 @@ import Axios from 'axios';
   }
 
   export const postTopic = (unformattedSlug, description) => {
-    const slug = hyphenateSlug(unformattedSlug)
+    const slug = formatSlug(unformattedSlug)
+    if(slug === false || !description){
+     
+      return false
+    }
+    else{
+      return Axios.post(
+        `https://ncnewstimdowd.herokuapp.com/api/topics`,
+        {
+          slug,
+          description
+        }
+      ).then((status) => {
+        return status
+      })
+    }
     
-     return Axios.post(
-      `https://ncnewstimdowd.herokuapp.com/api/topics`,
-      {
-        slug,
-        description
-      }
-    ).then((status) => console.log(status))
+     
 
   }
 
@@ -138,7 +150,6 @@ export const getCommentsByArticleId = (articleId) => {
 }
 
 export const changeTimeFormat = (timeStamp) => {
-  //2019-05-08T10:35:13.281Z
   if(!timeStamp) return
   
   const year = timeStamp.slice(0,4) 
