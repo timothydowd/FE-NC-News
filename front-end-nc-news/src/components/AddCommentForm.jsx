@@ -53,14 +53,7 @@ class AddCommentForm extends Component {
 
   render() {
     return (
-      // <form className="commentContainer" onSubmit={this.handleFormSubmit}>
-      //   <div className="form-group">
-            
-      //       <textarea onChange={this.handleChange} placeholder='Add your thoughts....' rows='10' cols='45'/>
-      //       <button onSubmit={this.handleFormSubmit} disabled={!this.props.userLoggedIn}>Add Comment</button>
-      //       </div>
       
-      // </form>
       <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-12" key={this.props.article_id}>
         <Card >
           <Card.Header>
