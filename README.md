@@ -3,12 +3,12 @@ NC News is a Reddit style news aggregation application where you can add and del
 
 
 Front-End:
-Netlify - NC News
-Git repository
+[Netlify - NC News](https://ncnews-timdowd.netlify.com)
+[Git repository](https://github.com/timothydowd/FE-NC-News)
 
 Back-end:
-Heroku - NC News
-Git repository
+[Heroku - NC News](https://ncnewstimdowd.herokuapp.com/api)
+[Git repository](https://github.com/timothydowd/BE-NC-News)
 
 
 Installation
@@ -20,7 +20,7 @@ node version 10
 Steps:
 
 Clone this repository
-git clone https://github.com/shobbsd/NC-knews-FE-Shaq.git
+git clone https://github.com/timothydowd/FE-NC-News.git
 
 cd FE2-NC-News/front-end-nc-news/
 
