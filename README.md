@@ -1,23 +1,23 @@
-NC News - by Tim Dowd
+#NC News - by Tim Dowd  
 NC News is a Reddit style news aggregation application where you can add and delete, like and dislike topics, articles and comments.  There is also functionality to log in and log out.
 
 
-Front-End:
-[Netlify - NC News](https://ncnews-timdowd.netlify.com)
+##Front-End:  
+[Netlify - NC News](https://ncnews-timdowd.netlify.com)  
 [Git repository](https://github.com/timothydowd/FE-NC-News)
 
-Back-end:
-[Heroku - NC News](https://ncnewstimdowd.herokuapp.com/api)
+##Back-end:  
+[Heroku - NC News](https://ncnewstimdowd.herokuapp.com/api)  
 [Git repository](https://github.com/timothydowd/BE-NC-News)
 
 
-Installation
+##Installation
 
-Prerequisites:
+###Prerequisites:
 npm version 6
 node version 10
 
-Steps:
+###Steps:
 
 Clone this repository
 git clone https://github.com/timothydowd/FE-NC-News.git
