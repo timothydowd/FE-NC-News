@@ -77,8 +77,10 @@ class Navi extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Top Articles</Nav.Link>
+            <Nav.Link href="/">All Articles</Nav.Link>
             <Nav.Link href="/topics">Topics</Nav.Link>
+            <Nav.Link href="/choose_topic_add_article">Add an Article</Nav.Link>
+
           </Nav>
           <Nav>
           <span className='loginStatus'>{this.state.LoginStatus}</span>

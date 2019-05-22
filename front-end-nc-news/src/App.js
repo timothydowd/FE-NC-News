@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Topics from './components/Topics'
 import SingleTopicAndArticles from './components/SingleTopicAndArticles'
 import Login from './components/Login'
+import ChooseTopicAddArticle from './components/ChooseTopicAddArticle'
 
 import Header from './components/Header' 
 import UserContent from './components/UserContent'
@@ -91,7 +92,7 @@ class App extends Component {
             <Login path='/login' setUserLogin={this.setUserLogin} logInSessionStorage={this.logInSessionStorage}/>
             <Topics path='/topics' userLoggedIn={this.state.userLoggedIn} />
             <SingleTopicAndArticles path='/articles' userLoggedIn={this.state.userLoggedIn} />
-            {/* <Articles path='/articles' /> */}
+            <ChooseTopicAddArticle path='/choose_topic_add_article' />
             <SingleArticle path='/articles/:article_id' userLoggedIn={this.state.userLoggedIn} />
             <UserContent path='/usercontent' userLoggedIn={this.state.userLoggedIn}  />
           </Router>

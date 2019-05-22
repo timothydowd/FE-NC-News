@@ -9,8 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown, faComment, faCalendarAlt, faNewspaper, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 import guestAvatar from '../images/user.png'
 import { getUser } from './apis'
-// import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-//https://ncnewstimdowd.herokuapp.com/api
+
 
 class Articles extends Component {
 
@@ -30,12 +29,12 @@ class Articles extends Component {
    
   }
 
-  renderArticles(mode){
+  renderArticles(inHomepage, inUserArticles, inAddArticle){
 
       return (
         <div>
-          {mode === 'Add an Article' && <AddArticleForm userLoggedIn={this.props.userLoggedIn} setArticleAddedToTrue={this.setArticleAddedToTrue} topicQuery={this.props.topicQuery}/>}
-          <p>{mode}</p>
+          {inAddArticle && <AddArticleForm userLoggedIn={this.props.userLoggedIn} setArticleAddedToTrue={this.setArticleAddedToTrue} topicQuery={this.props.topicQuery}/>}
+          <h2>Articles</h2>
           <select onChange={this.handleChangeDropDown}>
             <option value="">Newest</option>
             <option value="?sort_by=votes">Most Liked</option>
@@ -83,13 +82,13 @@ class Articles extends Component {
       <img src={loaderGif} height='150px' width='150px'/>
     )
     if(this.props.inHomePage){
-      return this.renderArticles('Latest Articles')   
+      return this.renderArticles(true, false, false)   
     }
     else if(this.props.userQuery){
       console.log('in articles', this.props.userQuery)
-      return this.renderArticles('Your Articles') 
+      return this.renderArticles(false, true, false) 
     }
-    else return this.renderArticles('Add an Article')
+    else return this.renderArticles(false, false, true)
 
   }
 
