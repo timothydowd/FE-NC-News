@@ -26,8 +26,7 @@ class SingleComment extends Component {
     };
   }
 
-  componentDidMount() {}
-
+  
   componentDidUpdate(prevState) {
     if (this.state.currentLike !== 0) {
       Promise.resolve(
