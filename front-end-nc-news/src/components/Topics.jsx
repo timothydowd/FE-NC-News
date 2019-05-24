@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../App.css";
 import { Link } from "@reach/router";
 import { getTopics } from "./apis";
 import AddTopicForm from "./AddTopicForm";
@@ -7,6 +6,8 @@ import loaderGif from "../images/roboloader.gif";
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import "../App.css";
+// import '../../node_modules/bootstrap-css-only';
 
 class Topics extends Component {
   state = {

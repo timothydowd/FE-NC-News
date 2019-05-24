@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../App.css";
 import { navigate } from "@reach/router";
 import AddCommentForm from "../components/AddCommentForm";
 import {
@@ -23,6 +22,8 @@ import {
   faQuoteLeft,
   faQuoteRight
 } from "@fortawesome/free-solid-svg-icons";
+import "../App.css";
+// import '../../node_modules/bootstrap-css-only';
 
 class SingleArticle extends Component {
   constructor(props) {

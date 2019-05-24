@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "../App.css";
 import { getTopics } from "./apis";
 import loaderGif from "../images/roboloader.gif";
 import { Dropdown, DropdownButton, Card } from "react-bootstrap";
+import "../App.css";
+// import '../../node_modules/bootstrap-css-only';
 
 class ChooseTopicAddArticle extends Component {
   state = {

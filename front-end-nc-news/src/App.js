@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import { Router } from "@reach/router";
 import Navi from "./components/Nav";
 import SingleArticle from "./components/SingleArticle";
@@ -9,7 +8,9 @@ import SingleTopicAndArticles from "./components/SingleTopicAndArticles";
 import Login from "./components/Login";
 import ChooseTopicAddArticle from "./components/ChooseTopicAddArticle";
 import UserContent from "./components/UserContent";
-import "../node_modules/bootstrap-css-only";
+import "./App.css";
+// import "../node_modules/bootstrap-css-only";
+
 
 class App extends Component {
   constructor(props) {

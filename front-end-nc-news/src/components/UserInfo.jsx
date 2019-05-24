@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "../App.css";
 import guestAvatar from "../images/user.png";
 import { Link } from "@reach/router";
 import { Image, Button, Dropdown } from "react-bootstrap";
+import "../App.css";
+// import '../../node_modules/bootstrap-css-only';
 
 class UserInfo extends Component {
   constructor(props) {
