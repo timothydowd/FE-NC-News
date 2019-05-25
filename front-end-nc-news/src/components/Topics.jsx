@@ -6,7 +6,7 @@ import loaderGif from "../images/roboloader.gif";
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-import "../App.css";
+// import "../App.css";
 // import '../../node_modules/bootstrap-css-only';
 
 class Topics extends Component {

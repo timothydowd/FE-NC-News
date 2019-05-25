@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import { postComment } from "./apis";
-import "../App.css";
+// import "../App.css";
 // import '../../node_modules/bootstrap-css-only';
 
 class AddCommentForm extends Component {
