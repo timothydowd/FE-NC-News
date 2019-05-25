@@ -11,8 +11,6 @@ import {
   faQuoteLeft,
   faQuoteRight
 } from "@fortawesome/free-solid-svg-icons";
-import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
 
 class SingleComment extends Component {
   constructor(props) {
@@ -27,7 +25,7 @@ class SingleComment extends Component {
     };
   }
 
-  
+
   componentDidUpdate(prevState) {
     if (this.state.currentLike !== 0) {
       Promise.resolve(

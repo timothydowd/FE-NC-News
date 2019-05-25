@@ -1,10 +1,8 @@
 import React from "react";
 import Articles from "./Articles";
-import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
 
 const SingleTopicAndArticles = (props) => {
- 
+
     return (
       <div>
         <p>Articles in {props.location.search.slice(7)}</p>
@@ -14,7 +12,7 @@ const SingleTopicAndArticles = (props) => {
         />
       </div>
     );
-  
+
 }
 
 export default SingleTopicAndArticles;

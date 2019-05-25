@@ -9,7 +9,6 @@ import Login from "./components/Login";
 import ChooseTopicAddArticle from "./components/ChooseTopicAddArticle";
 import UserContent from "./components/UserContent";
 import "./App.css";
-// import "../node_modules/bootstrap-css-only";
 
 
 class App extends Component {

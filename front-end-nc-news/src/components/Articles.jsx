@@ -15,8 +15,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import guestAvatar from "../images/user.png";
 import { getUser } from "./apis";
-import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
 
 class Articles extends Component {
   constructor(props) {

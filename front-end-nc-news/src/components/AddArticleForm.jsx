@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { postArticle } from "./apis";
 import { Card, Form, Button } from "react-bootstrap";
-import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
 
 class AddArticleForm extends Component {
   constructor(props) {
