@@ -39,44 +39,49 @@ class Login extends Component {
 
   render() {
     return (
-      <Form className="FormInput" onSubmit={this.handleFormSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            className="text-area-input"
-            type="input"
-            placeholder="Enter username..."
-            onChange={this.handleChangeUsername}
-          />
-          <Form.Text className="text-muted">
-            Please use 'icellusedkars' as it has an avatar image that still
-            exists online...
-          </Form.Text>
-        </Form.Group>
+      <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6">
+        <Form className="FormInput" onSubmit={this.handleFormSubmit}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              className="text-area-input"
+              type="input"
+              placeholder="Enter username..."
+              onChange={this.handleChangeUsername}
+            />
+            <Form.Text className="text-muted">
+              Please enter 'icellusedkars' as the username as it has an avatar image that still
+              exists online...
+            </Form.Text>
+          </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            className="text-area-input"
-            type="input"
-            placeholder="Enter password..."
-          />
-        </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              className="text-area-input"
+              type="input"
+              placeholder="Enter password..."
+            />
+            <Form.Text className="text-muted">
+              Enter any random password or leave blank...
+            </Form.Text>
+          </Form.Group>
 
-        <Button
-          variant="primary"
-          type="submit"
-          onSubmit={this.handleFormSubmit}
-        >
-          Login
-        </Button>
-        {this.state.loginFailed && (
-          <Form.Text className="warningText">
-            <p />
-            Username incorrect - please use suggested username
-          </Form.Text>
-        )}
-      </Form>
+          <Button
+            variant="primary"
+            type="submit"
+            onSubmit={this.handleFormSubmit}
+          >
+            Login
+          </Button>
+          {this.state.loginFailed && (
+            <Form.Text className="warningText">
+              <p />
+              Username incorrect - please use suggested username
+            </Form.Text>
+          )}
+        </Form>
+      </div>
     );
   }
 }
