@@ -11,8 +11,7 @@ import {
   faQuoteLeft,
   faQuoteRight
 } from "@fortawesome/free-solid-svg-icons";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class SingleComment extends Component {
   constructor(props) {
@@ -36,7 +35,6 @@ class SingleComment extends Component {
           this.props.comment.comment_id
         )
       ).then(updatedComment => {
-        console.log(updatedComment);
         this.setState({
           commentByCommentId: updatedComment,
           currentLike: 0,
@@ -47,7 +45,6 @@ class SingleComment extends Component {
   }
 
   handleCommentLikeClick = like => {
-    console.log("hit comment like");
     if (this.props.userLoggedIn && this.state.likeCount < 1 && like === 1) {
       this.setState(prevState => ({
         currentLike: like,
@@ -64,7 +61,7 @@ class SingleComment extends Component {
 
   render() {
     if (this.state.loading)
-      return <img src={loaderGif} height="150px" width="150px" />;
+      return <img src={loaderGif} height="150px" width="150px" alt="loading" />;
 
     return (
       <div

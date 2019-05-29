@@ -15,8 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import guestAvatar from "../images/user.png";
 import { getUser } from "./apis";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class Articles extends Component {
   constructor(props) {
@@ -107,7 +106,7 @@ class Articles extends Component {
 
   render() {
     if (this.state.loading)
-      return <img src={loaderGif} height="150px" width="150px" />;
+      return <img src={loaderGif} height="150px" width="150px" alt="loading" />;
     if (this.props.inHomePage) {
       return this.renderArticles(true, false, false);
     } else if (this.props.userQuery) {

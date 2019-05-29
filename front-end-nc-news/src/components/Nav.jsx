@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { Image, Dropdown, Nav, Navbar } from "react-bootstrap";
-// import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import guestAvatar from "../images/user.png";
-// import "../../node_modules/bootstrap-css-only";
 import ncnewsLogo from "../images/ncnews2.jpg";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class Navi extends Component {
   constructor(props) {

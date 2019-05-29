@@ -6,8 +6,7 @@ import loaderGif from "../images/roboloader.gif";
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class Topics extends Component {
   state = {
@@ -19,7 +18,7 @@ class Topics extends Component {
 
   render() {
     if (this.state.loading)
-      return <img src={loaderGif} height="150px" width="150px" />;
+      return <img src={loaderGif} height="150px" width="150px" alt="loading" />;
     return (
       <div>
         <h2>Topics</h2>

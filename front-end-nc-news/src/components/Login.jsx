@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { getUser } from "./apis";
 import { navigate } from "@reach/router";
 import { Form, Button } from "react-bootstrap";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class Login extends Component {
   constructor(props) {
@@ -25,7 +24,6 @@ class Login extends Component {
     event.preventDefault();
     Promise.resolve(getUser(this.state.username)).then(userDetails => {
       if (!userDetails) {
-        console.log("wrong user");
         this.setState({ loginFailed: true });
       } else {
         this.props.logInSessionStorage(

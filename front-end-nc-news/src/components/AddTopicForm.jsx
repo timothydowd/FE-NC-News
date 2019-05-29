@@ -3,8 +3,7 @@ import { postTopic } from "./apis";
 import { Form, Button, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class AddTopicForm extends Component {
   constructor(props) {
@@ -50,7 +49,6 @@ class AddTopicForm extends Component {
         this.setState({ inputWarning: false });
         this.props.setTopicAddedToTrue();
       } else {
-        console.log("result: ", result);
         this.setState({ inputWarning: true });
       }
     });

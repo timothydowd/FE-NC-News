@@ -22,8 +22,7 @@ import {
   faQuoteLeft,
   faQuoteRight
 } from "@fortawesome/free-solid-svg-icons";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class SingleArticle extends Component {
   constructor(props) {
@@ -74,7 +73,6 @@ class SingleArticle extends Component {
       Promise.resolve(
         patchVoteByArticleId(this.state.currentLike, this.props.article_id)
       ).then(updatedArticle => {
-        console.log(updatedArticle);
         this.setState({
           articleByArticleId: updatedArticle,
           currentLike: 0,
@@ -133,7 +131,7 @@ class SingleArticle extends Component {
 
   render() {
     if (this.state.loading)
-      return <img src={loaderGif} height="150px" width="150px" />;
+      return <img src={loaderGif} height="150px" width="150px" alt="loading" />;
 
     const {
       title,

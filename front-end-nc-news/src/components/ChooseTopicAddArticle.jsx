@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { getTopics } from "./apis";
 import loaderGif from "../images/roboloader.gif";
 import { Dropdown, DropdownButton, Card } from "react-bootstrap";
-// import "../App.css";
-// import '../../node_modules/bootstrap-css-only';
+
 
 class ChooseTopicAddArticle extends Component {
   state = {
@@ -15,7 +14,7 @@ class ChooseTopicAddArticle extends Component {
 
   render() {
     if (this.state.loading)
-      return <img src={loaderGif} height="150px" width="150px" />;
+      return <img src={loaderGif} height="150px" width="150px" alt="loading" />;
     return (
       <div className="card-container col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-6">
         <p />
